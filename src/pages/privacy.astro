@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Privacy Policy — NeetCore" description="NeetCore privacy policy: how we collect, use and protect your data.">
+	<Navbar />
+	<main class="mx-auto w-full max-w-4xl px-6 py-20">
+		<h1 class="text-ink" style="font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.1; letter-spacing: -1px; font-weight: 700">
+			Privacy Policy
+		</h1>
+		<p class="mt-4 text-body-md text-ink-muted">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+		<div class="mt-10 prose prose-ink max-w-none">
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">1. Information we collect</h2>
+			<p class="text-body-md text-ink-muted mb-4">When you create an account, we collect your name and email address. When you practice, we store your answers, timestamps and progress to power your dashboard and revision queue.</p>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">2. How we use your data</h2>
+			<ul class="list-disc list-inside space-y-2 text-body-md text-ink-muted">
+				<li>To provide and improve the practice experience</li>
+				<li>To save your progress and streaks across devices</li>
+				<li>To generate personalized daily practice sets</li>
+				<li>To send essential account notifications (never marketing)</li>
+			</ul>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">3. Data sharing</h2>
+			<p class="text-body-md text-ink-muted mb-4">We do not sell your data. We do not show ads. We share data only with processors needed to run the service (hosting, authentication), under strict contractual safeguards.</p>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">4. Your rights</h2>
+			<p class="text-body-md text-ink-muted mb-4">You can access, correct, export or delete your data at any time from your account settings, or by emailing <a href="mailto:privacy@neetcore.com" class="text-primary underline">privacy@neetcore.com</a>.</p>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">5. Security</h2>
+			<p class="text-body-md text-ink-muted mb-4">All data is encrypted in transit (TLS 1.2+) and at rest (AES-256). Passwords are hashed with Argon2id.</p>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">6. Retention</h2>
+			<p class="text-body-md text-ink-muted mb-4">Account data is retained while your account is active. Deleted accounts are purged within 30 days. Anonymized analytics are kept indefinitely to improve the platform.</p>
+		</div>
+	</main>
+	<Footer />
+</Layout>

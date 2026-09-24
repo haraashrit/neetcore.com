@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Terms of Service — NeetCore" description="NeetCore terms of service.">
+	<Navbar />
+	<main class="mx-auto w-full max-w-4xl px-6 py-20">
+		<h1 class="text-ink" style="font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.1; letter-spacing: -1px; font-weight: 700">
+			Terms of Service
+		</h1>
+		<p class="mt-4 text-body-md text-ink-muted">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+		<div class="mt-10 prose prose-ink max-w-none">
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">1. Acceptance</h2>
+			<p class="text-body-md text-ink-muted mb-4">By creating an account or using NeetCore, you agree to these terms. If you do not agree, do not use the service.</p>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">2. The service</h2>
+			<ul class="list-disc list-inside space-y-2 text-body-md text-ink-muted">
+				<li>NeetCore provides NEET question practice across Physics, Chemistry, Botany and Zoology with a one-time ₹999 pass.</li>
+				<li>The service is provided "as is" without warranties of any kind.</li>
+				<li>We may modify, suspend or discontinue any feature at any time.</li>
+			</ul>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">3. Your account</h2>
+			<ul class="list-disc list-inside space-y-2 text-body-md text-ink-muted">
+				<li>You are responsible for your account credentials.</li>
+				<li>One account per person. Do not share credentials.</li>
+				<li>You may delete your account at any time.</li>
+			</ul>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">4. Acceptable use</h2>
+			<ul class="list-disc list-inside space-y-2 text-body-md text-ink-muted">
+				<li>Use the service for personal, non-commercial NEET preparation only.</li>
+				<li>Do not attempt to scrape, copy or redistribute question content.</li>
+				<li>Do not use automated tools or scripts to interact with the service.</li>
+			</ul>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">5. Content</h2>
+			<p class="text-body-md text-ink-muted mb-4">All questions, solutions and study materials are the property of NeetCore or licensed for use on this platform. You may not copy, distribute or create derivative works without permission.</p>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">6. Disclaimer</h2>
+			<p class="text-body-md text-ink-muted mb-4">NeetCore is not affiliated with NTA, NEET or any government body. Practice questions are for preparation purposes only and do not guarantee exam results.</p>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">7. Liability</h2>
+			<p class="text-body-md text-ink-muted mb-4">To the maximum extent permitted by law, NeetCore shall not be liable for any indirect, incidental or consequential damages arising from use of the service.</p>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">8. Changes</h2>
+			<p class="text-body-md text-ink-muted mb-4">We may update these terms. Continued use after changes constitutes acceptance. Material changes will be notified via email.</p>
+
+			<h2 class="text-heading-2 text-ink mt-10 mb-4">9. Contact</h2>
+			<p class="text-body-md text-ink-muted mb-4">Questions about these terms? Email <a href="mailto:legal@neetcore.com" class="text-primary underline">legal@neetcore.com</a>.</p>
+		</div>
+	</main>
+	<Footer />
+</Layout>

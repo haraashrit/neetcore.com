@@ -1,0 +1,615 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	chapterName: string;
+	setName: string;
+	subjectName: string;
+	subjectSlug: string;
+	badgeCode: number | string;
+	badgeSet: number | string;
+	subtopics: string[];
+	questions: any[];
+}
+
+const {
+	chapterName,
+	setName,
+	subjectName,
+	subjectSlug,
+	badgeCode,
+	badgeSet,
+	subtopics,
+	questions,
+} = Astro.props;
+
+const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+const activeSubtopics = subtopics;
+const pad = (n: number) => String(n).padStart(3, '0');
+---
+
+<Layout title={`${chapterName} — ${setName} — NEETCore`} description={`Practice ${chapterName} • ${setName} — interactive practice window with questions.`}>
+	<Navbar />
+	<main class="mx-auto w-full max-w-6xl px-6 py-8 sm:py-10">
+		<!-- Breadcrumb — technical mono -->
+		<nav class="flex flex-wrap items-center gap-x-2 gap-y-1 font-console text-[11px] font-medium uppercase tracking-[0.14em] text-ink-faint" aria-label="Breadcrumb">
+			<a href="/practice" class="transition-colors hover:text-primary">Practice</a>
+			<span aria-hidden="true" class="select-none">/</span>
+			<a href={`/practice/${subjectSlug}`} class="transition-colors hover:text-primary">{subjectName}</a>
+			<span aria-hidden="true" class="select-none">/</span>
+			<a href={`/practice/${subjectSlug}/${slugify(chapterName)}`} class="transition-colors hover:text-primary">{chapterName}</a>
+			<span aria-hidden="true" class="select-none">/</span>
+			<span class="text-ink">{setName}</span>
+		</nav>
+
+		<!-- Session header — spec sheet -->
+		<section class="mt-5 overflow-hidden rounded-lg border border-hairline bg-surface shadow-card">
+			<div class="border-b border-hairline bg-canvas-soft/60 px-5 py-2.5 sm:px-6">
+				<div class="flex flex-wrap items-center justify-between gap-2 font-console text-[11px] font-medium uppercase tracking-[0.14em] text-ink-muted">
+					<span>Practice module // {subjectName}</span>
+					<span class="inline-flex items-center gap-2">
+						<span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+						Session live
+					</span>
+				</div>
+			</div>
+			<div class="flex flex-col gap-5 px-5 py-5 sm:px-6 lg:flex-row lg:items-end lg:justify-between">
+				<div class="min-w-0">
+					<h1 class="text-ink" style="font-size: clamp(1.5rem, 3vw, 1.9rem); line-height:1.15; letter-spacing:-0.5px; font-weight:700">{chapterName}</h1>
+					<p class="mt-1.5 text-body-sm text-ink-muted">{setName} &middot; {questions.length} questions &middot; NEET pattern</p>
+					<dl class="mt-4 flex flex-wrap gap-x-6 gap-y-3">
+						<div>
+							<dt class="font-console text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-faint">Module ID</dt>
+							<dd class="mt-0.5 font-console text-[13px] font-semibold text-ink">{badgeCode}&ndash;{badgeSet}</dd>
+						</div>
+						<div>
+							<dt class="font-console text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-faint">Items</dt>
+							<dd class="mt-0.5 font-console text-[13px] font-semibold text-ink">{pad(questions.length)} QS</dd>
+						</div>
+						<div>
+							<dt class="font-console text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-faint">Marking</dt>
+							<dd class="mt-0.5 font-console text-[13px] font-semibold text-ink">+4 / &minus;1</dd>
+						</div>
+						<div>
+							<dt class="font-console text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-faint">Mode</dt>
+							<dd class="mt-0.5 font-console text-[13px] font-semibold text-ink">Practice</dd>
+						</div>
+					</dl>
+				</div>
+				<div class="flex shrink-0 items-center gap-2">
+					<a href={`/practice/${subjectSlug}/${slugify(chapterName)}`} class="inline-flex items-center gap-1.5 rounded-md border border-hairline bg-surface px-4 py-2 font-console text-[12px] font-semibold uppercase tracking-[0.08em] text-ink transition-colors hover:border-ink-faint hover:bg-canvas-soft">
+						<span aria-hidden="true">&larr;</span> Sets
+					</a>
+					<button id="paletteToggle" class="inline-flex items-center gap-2.5 rounded-md bg-primary px-4 py-2 font-console text-[12px] font-semibold uppercase tracking-[0.08em] text-white transition-opacity hover:opacity-90" style="background-color: var(--color-primary)">
+						<svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="shrink-0"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/></svg>
+						Index
+						<span id="paletteCount" class="rounded border border-white/25 bg-white/10 px-1.5 py-px font-console text-[11px] font-bold text-white">{questions.length}</span>
+					</button>
+				</div>
+			</div>
+			<!-- Live telemetry -->
+			<div class="grid grid-cols-3 divide-x divide-hairline border-t border-hairline bg-surface">
+				<div class="px-5 py-3 sm:px-6">
+					<p class="font-console text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-faint">Attempted</p>
+					<p class="mt-0.5 font-console text-[15px] font-bold tabular-nums text-ink"><span id="statAttempted">00</span><span class="text-ink-faint">/{pad(questions.length)}</span></p>
+				</div>
+				<div class="px-5 py-3 sm:px-6">
+					<p class="font-console text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-faint">Correct</p>
+					<p class="mt-0.5 font-console text-[15px] font-bold tabular-nums text-ink"><span id="statCorrect">00</span><span class="text-ink-faint">/{pad(questions.length)}</span></p>
+				</div>
+				<div class="px-5 py-3 sm:px-6">
+					<p class="font-console text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-faint">Accuracy</p>
+					<p class="mt-0.5 font-console text-[15px] font-bold tabular-nums text-ink"><span id="statAccuracy">—</span></p>
+				</div>
+			</div>
+			<div class="h-[3px] w-full bg-canvas-soft">
+				<div id="progressBarFill" class="h-full w-0 bg-primary transition-all duration-300" style="width: 0%"></div>
+			</div>
+		</section>
+
+		<!-- Subtopic Filter — control panel -->
+		<section id="subtopicFilterBar" class="mt-5 overflow-hidden rounded-lg border border-hairline bg-surface shadow-card">
+			<div class="flex flex-col gap-3 border-b border-hairline px-5 py-3.5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+				<div class="flex items-center gap-3">
+					<span class="font-console text-[11px] font-bold uppercase tracking-[0.16em] text-ink">01 / Subtopic filter</span>
+					<span class="hidden font-console text-[11px] uppercase tracking-[0.12em] text-ink-faint sm:inline">{chapterName} &middot; {activeSubtopics.length} topics</span>
+				</div>
+				<div class="flex items-center gap-2">
+					<span id="filterCount" class="inline-flex items-center rounded border border-hairline bg-canvas-soft px-2 py-1 font-console text-[11px] font-bold uppercase tracking-[0.1em] text-ink">{questions.length} QS</span>
+				</div>
+			</div>
+			<div class="px-5 py-4 sm:px-6">
+				<div id="subtopicFilter" class="flex flex-wrap gap-1.5">
+					<button data-subtopic="ALL" class="subtopic-filter-btn active inline-flex items-center rounded-md bg-primary px-3.5 py-2 font-console text-[11.5px] font-semibold uppercase tracking-[0.08em] text-white transition-colors" style="background-color: var(--color-primary)">
+						All
+					</button>
+					{activeSubtopics.map((st) => (
+						<button data-subtopic={slugify(st)} class="subtopic-filter-btn inline-flex items-center rounded-md border border-hairline bg-surface px-3.5 py-2 font-console text-[11.5px] font-medium uppercase tracking-[0.08em] text-ink-secondary transition-colors hover:border-ink-faint hover:text-ink">
+							{st}
+						</button>
+					))}
+				</div>
+				<p id="filterEmpty" class="mt-3 hidden rounded-md border border-status-amber-border bg-status-amber-bg px-3 py-2 font-console text-[12px] font-medium text-status-amber-text">No items for this subtopic in current set. Reset to All.</p>
+			</div>
+		</section>
+
+		<!-- Questions List -->
+		<div id="questionsList" class="mt-5 space-y-4"></div>
+
+		<!-- Pagination bar -->
+		<div id="paginationBar" class="mt-8 flex flex-wrap items-center justify-center gap-1.5"></div>
+
+		<!-- Bottom helper -->
+		<div class="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-hairline pt-4">
+			<span id="progressText" class="font-console text-[11.5px] font-medium uppercase tracking-[0.12em] text-ink-muted">00 / {pad(questions.length)} attempted</span>
+			<span class="font-console text-[11.5px] uppercase tracking-[0.12em] text-ink-faint">NEETCore practice console &middot; v1.0</span>
+		</div>
+	</main>
+
+	<!-- Palette Drawer -->
+	<div id="paletteModal" class="fixed inset-0 z-50 hidden">
+		<div id="paletteBackdrop" class="absolute inset-0 bg-ink/40 backdrop-blur-[2px]"></div>
+		<div class="absolute left-0 top-0 flex h-full w-[340px] max-w-[88vw] flex-col border-r border-hairline bg-surface">
+			<div class="flex items-center justify-between border-b border-hairline px-5 py-4">
+				<div>
+					<h3 class="font-console text-[12px] font-bold uppercase tracking-[0.16em] text-ink">Question index</h3>
+					<p class="mt-1 font-console text-[11px] uppercase tracking-[0.1em] text-ink-muted">{chapterName} &middot; {setName}</p>
+				</div>
+				<button id="paletteClose" class="inline-flex h-8 w-8 items-center justify-center rounded-md border border-hairline bg-surface font-console text-[13px] text-ink hover:bg-canvas-soft">&times;</button>
+			</div>
+			<div class="flex-1 overflow-auto px-5 py-5">
+				<p class="mb-3 font-console text-[11px] uppercase tracking-[0.12em] text-ink-faint">Select item to jump &rarr;</p>
+				<div id="paletteGrid" class="grid grid-cols-5 gap-1.5"></div>
+				<div class="mt-6 rounded-md border border-hairline bg-canvas-soft/50 p-4">
+					<p class="font-console text-[11px] font-bold uppercase tracking-[0.14em] text-ink">Legend</p>
+					<div class="mt-3 grid grid-cols-2 gap-2 font-console text-[11px] uppercase tracking-[0.08em] text-ink-muted">
+						<span class="inline-flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-[3px] bg-emerald-500"></span> Correct</span>
+						<span class="inline-flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-[3px] bg-red-500"></span> Wrong</span>
+						<span class="inline-flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-[3px] bg-blue-500"></span> Saved</span>
+						<span class="inline-flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-[3px] border border-hairline bg-surface"></span> Unvisited</span>
+					</div>
+				</div>
+			</div>
+			<div class="border-t border-hairline px-5 py-4">
+				<button id="paletteGo" class="w-full rounded-md bg-ink px-5 py-2.5 font-console text-[12px] font-semibold uppercase tracking-[0.1em] text-white hover:opacity-90">Go to question</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Highlight Modal -->
+	<div id="highlightModal" class="fixed inset-0 z-50 hidden">
+		<div id="highlightBackdrop" class="absolute inset-0 bg-ink/40 backdrop-blur-[2px]"></div>
+		<div class="absolute left-1/2 top-1/2 w-[420px] max-w-[92vw] -translate-x-1/2 -translate-y-1/2 rounded-lg border border-hairline bg-surface p-6">
+			<div class="flex items-center justify-between">
+				<h3 class="font-console text-[12px] font-bold uppercase tracking-[0.16em] text-ink">Highlight / Annotate</h3>
+				<button id="highlightClose" class="inline-flex h-7 w-7 items-center justify-center rounded-md border border-hairline font-console text-[13px] text-ink hover:bg-canvas-soft">&times;</button>
+			</div>
+			<p class="mt-1.5 text-caption text-ink-muted">Select marker color and add an optional note — stored per question.</p>
+			<div class="mt-4 flex gap-2">
+				<button data-color="yellow" class="highlight-color h-8 w-8 rounded-md bg-yellow-300 ring-2 ring-yellow-500 ring-offset-2 ring-offset-surface"></button>
+				<button data-color="green" class="highlight-color h-8 w-8 rounded-md bg-green-300 ring-1 ring-green-400 ring-offset-2 ring-offset-surface"></button>
+				<button data-color="pink" class="highlight-color h-8 w-8 rounded-md bg-pink-300 ring-1 ring-pink-400 ring-offset-2 ring-offset-surface"></button>
+				<button data-color="blue" class="highlight-color h-8 w-8 rounded-md bg-blue-300 ring-1 ring-blue-400 ring-offset-2 ring-offset-surface"></button>
+			</div>
+			<textarea id="highlightNote" rows="2" placeholder="Add note (optional)..." class="mt-4 w-full rounded-md border border-hairline bg-canvas-soft px-3 py-2 text-body-sm text-ink placeholder:text-ink-faint"></textarea>
+			<div class="mt-4 flex justify-end gap-2">
+				<button id="highlightCancel" class="rounded-md border border-hairline px-4 py-2 font-console text-[12px] font-semibold uppercase tracking-[0.08em] text-ink hover:bg-canvas-soft">Cancel</button>
+				<button id="highlightSave" class="rounded-md bg-ink px-5 py-2 font-console text-[12px] font-semibold uppercase tracking-[0.08em] text-white hover:opacity-90">Save</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Toast -->
+	<div id="toast" class="pointer-events-none fixed bottom-6 left-1/2 z-50 hidden -translate-x-1/2 rounded-md bg-ink px-4 py-2 font-console text-[12px] font-semibold uppercase tracking-[0.1em] text-white shadow-lift"></div>
+
+	<script define:vars={{ mockQuestions: questions, activeSubtopics, chapterName, setName, badgeCode, badgeSet }}>
+		(() => {
+			const QUESTIONS_DATA = mockQuestions;
+			const total = QUESTIONS_DATA.length;
+			const answers = Array(total).fill(null);
+			const attempted = Array(total).fill(false);
+			const isCorrectArr = Array(total).fill(null);
+			const bookmarks = new Set();
+			const doubts = new Set();
+			const notes = Array(total).fill('');
+			const noteImages = Array(total).fill('');
+			const highlights = Array(total).fill(null);
+
+			const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+			const pad2 = (n) => String(n).padStart(2, '0');
+
+			const paletteToggle = document.getElementById('paletteToggle');
+			const paletteModal = document.getElementById('paletteModal');
+			const paletteBackdrop = document.getElementById('paletteBackdrop');
+			const paletteClose = document.getElementById('paletteClose');
+			const paletteGrid = document.getElementById('paletteGrid');
+			const paletteGo = document.getElementById('paletteGo');
+			const progressText = document.getElementById('progressText');
+			const statAttempted = document.getElementById('statAttempted');
+			const statCorrect = document.getElementById('statCorrect');
+			const statAccuracy = document.getElementById('statAccuracy');
+			const progressBarFill = document.getElementById('progressBarFill');
+			const toast = document.getElementById('toast');
+			const questionsList = document.getElementById('questionsList');
+			const filterCount = document.getElementById('filterCount');
+			const filterEmpty = document.getElementById('filterEmpty');
+
+			let paletteSelected = 0;
+			let selectedSubtopic = 'ALL';
+			let filteredIndices = QUESTIONS_DATA.map((_, i) => i);
+			function getFilteredIndices(sub){
+				if (sub === 'ALL') return QUESTIONS_DATA.map((_, i) => i);
+				const slug = slugify(sub);
+				return QUESTIONS_DATA.map((q, i) => (slugify(q.subtopic) === slug ? i : -1)).filter((i) => i !== -1);
+			}
+			function applyFilter(sub){
+				selectedSubtopic = sub;
+				filteredIndices = getFilteredIndices(sub);
+				currentPage = 0;
+				document.querySelectorAll('.subtopic-filter-btn').forEach(btn=>{
+					const isActive = btn.dataset.subtopic === sub;
+					btn.className = isActive ? 'subtopic-filter-btn active inline-flex items-center rounded-md bg-primary px-3.5 py-2 font-console text-[11.5px] font-semibold uppercase tracking-[0.08em] text-white transition-colors' : 'subtopic-filter-btn inline-flex items-center rounded-md border border-hairline bg-surface px-3.5 py-2 font-console text-[11.5px] font-medium uppercase tracking-[0.08em] text-ink-secondary transition-colors hover:border-ink-faint hover:text-ink';
+					if(isActive) btn.style.backgroundColor = 'var(--color-primary)'; else btn.style.backgroundColor = '';
+					if(isActive) btn.style.color = '#fff'; else btn.style.color = '';
+				});
+				if(filterCount) filterCount.textContent = `${filteredIndices.length} QS`;
+				if(filteredIndices.length === 0){
+					if(filterEmpty) filterEmpty.classList.remove('hidden');
+				} else {
+					if(filterEmpty) filterEmpty.classList.add('hidden');
+				}
+				renderList();
+			}
+
+			let currentPage = 0;
+			const pageSize = 20;
+			const paginationBar = document.getElementById('paginationBar');
+			function totalPages(){ return Math.ceil(filteredIndices.length / pageSize); }
+			function getPageIndices(){ return filteredIndices.slice(currentPage*pageSize, (currentPage+1)*pageSize); }
+			function renderPagination(){
+				if(!paginationBar) return;
+				paginationBar.innerHTML='';
+				const tp = totalPages();
+				if(tp <= 1){ paginationBar.classList.add('hidden'); return; }
+				paginationBar.classList.remove('hidden');
+				const prev = document.createElement('button');
+				prev.textContent='‹ Prev';
+				prev.className='inline-flex items-center rounded-md border border-hairline bg-surface px-3.5 py-2 font-console text-[12px] font-semibold uppercase tracking-[0.06em] text-ink '+(currentPage===0?'opacity-40 cursor-not-allowed':'hover:border-ink-faint');
+				prev.disabled=currentPage===0;
+				prev.addEventListener('click', ()=>{ if(currentPage>0){ currentPage--; renderList(); window.scrollTo({top:0, behavior:'smooth'}); }});
+				paginationBar.appendChild(prev);
+				let start=Math.max(0, currentPage-3), end=Math.min(tp, start+7);
+				if(end-start<7) start=Math.max(0, end-7);
+				for(let p=start; p<end; p++){
+					const b=document.createElement('button');
+					b.textContent=pad2(p+1);
+					b.className='h-9 min-w-9 rounded-md border px-2 font-console text-[12px] font-bold tabular-nums '+(p===currentPage?'bg-primary border-primary text-white':'border-hairline bg-surface text-ink hover:border-ink-faint');
+					b.addEventListener('click', ()=>{ currentPage=p; renderList(); window.scrollTo({top:0, behavior:'smooth'}); });
+					paginationBar.appendChild(b);
+				}
+				if(end < tp){
+					const ell=document.createElement('span'); ell.textContent='…'; ell.className='px-2 font-console text-ink-faint'; paginationBar.appendChild(ell);
+					const last=document.createElement('button'); last.textContent=pad2(tp); last.className='h-9 min-w-9 rounded-md border border-hairline bg-surface px-2 font-console text-[12px] font-semibold tabular-nums text-ink hover:border-ink-faint'; last.addEventListener('click', ()=>{ currentPage=tp-1; renderList(); window.scrollTo({top:0, behavior:'smooth'}); }); paginationBar.appendChild(last);
+				}
+				const next=document.createElement('button');
+				next.textContent='Next ›';
+				next.className='inline-flex items-center rounded-md border border-hairline bg-surface px-3.5 py-2 font-console text-[12px] font-semibold uppercase tracking-[0.06em] text-ink '+(currentPage===tp-1?'opacity-40 cursor-not-allowed':'hover:border-ink-faint');
+				next.disabled=currentPage===tp-1;
+				next.addEventListener('click', ()=>{ if(currentPage<tp-1){ currentPage++; renderList(); window.scrollTo({top:0, behavior:'smooth'}); }});
+				paginationBar.appendChild(next);
+				const info=document.createElement('span');
+				info.className='ml-2 font-console text-[11px] uppercase tracking-[0.1em] text-ink-faint';
+				info.textContent=`PG ${pad2(currentPage+1)}/${pad2(tp)} · ${filteredIndices.length} QS`;
+				paginationBar.appendChild(info);
+			}
+
+			function showToast(msg){
+				toast.textContent = msg;
+				toast.classList.remove('hidden');
+				clearTimeout(showToast._t);
+				showToast._t = setTimeout(()=> toast.classList.add('hidden'), 2200);
+			}
+
+			function updatePalette(){
+				paletteGrid.innerHTML = '';
+				const list = filteredIndices.length ? filteredIndices : [];
+				list.forEach((idx)=>{
+					const btn = document.createElement('button');
+					btn.type = 'button';
+					const displayNo = filteredIndices.indexOf(idx) + 1;
+					btn.textContent = pad2(displayNo);
+					btn.dataset.idx = idx;
+					btn.className = 'h-10 w-full rounded-md border font-console text-[12px] font-bold tabular-nums transition-colors ';
+					let cls = 'border-hairline bg-surface text-ink hover:border-ink-faint';
+					if (bookmarks.has(idx)) cls = 'bg-primary border-primary text-white';
+					else if (attempted[idx]) {
+						if (isCorrectArr[idx]) cls = 'bg-emerald-600 border-emerald-600 text-white';
+						else cls = 'bg-red-600 border-red-600 text-white';
+					}
+					if (idx === paletteSelected) cls += ' outline outline-2 outline-offset-2 outline-primary';
+					btn.className += cls;
+					if (doubts.has(idx)) btn.textContent = pad2(displayNo) + '?';
+					btn.addEventListener('click', ()=>{
+						paletteSelected = idx;
+						const pageForIdx = Math.floor(filteredIndices.indexOf(idx) / pageSize);
+						if(pageForIdx !== currentPage){
+							currentPage = pageForIdx;
+							renderList();
+						}
+						updatePalette();
+						setTimeout(()=>{
+							const el = document.getElementById('qcard-'+idx);
+							if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+						}, 100);
+						paletteModal.classList.add('hidden');
+					});
+					paletteGrid.appendChild(btn);
+				});
+				const filteredAttempted = filteredIndices.filter(i=> attempted[i]).length;
+				const filteredTotal = filteredIndices.length;
+				const allAttempted = attempted.filter(Boolean).length;
+				const allCorrect = isCorrectArr.filter(Boolean).length;
+				const acc = allAttempted ? Math.round((allCorrect / allAttempted) * 100) + '%' : '—';
+				const pct = total ? Math.round((allAttempted / total) * 100) : 0;
+				if (progressText) progressText.textContent = `${pad2(filteredAttempted)} / ${pad2(filteredTotal)} attempted`;
+				if (statAttempted) statAttempted.textContent = pad2(allAttempted);
+				if (statCorrect) statCorrect.textContent = pad2(allCorrect);
+				if (statAccuracy) statAccuracy.textContent = acc;
+				if (progressBarFill) progressBarFill.style.width = pct + '%';
+				if(filterCount) filterCount.textContent = `${filteredTotal} QS`;
+			}
+
+			// Escape HTML to prevent XSS
+			function escapeHtml(str) {
+				const div = document.createElement('div');
+				div.textContent = String(str ?? '');
+				return div.innerHTML;
+			}
+
+			function contentHtml(value, isTrustedHtml) {
+				return isTrustedHtml === true ? String(value ?? '') : escapeHtml(value);
+			}
+
+			function safeImageUrl(value) {
+				if (typeof value !== 'string' || !value.startsWith('/') || value.startsWith('//')) return '';
+				return value.replace(/"/g, '%22').replace(/'/g, '%27');
+			}
+
+			function statusBadge(idx){
+				if(!attempted[idx]) return '<span class="inline-flex items-center gap-1.5 font-console text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-faint"><span class="h-1.5 w-1.5 rounded-full bg-current opacity-40"></span>Unattempted</span>';
+				if(isCorrectArr[idx]) return '<span class="inline-flex items-center gap-1.5 font-console text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-600"><span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>Correct</span>';
+				return '<span class="inline-flex items-center gap-1.5 font-console text-[10px] font-semibold uppercase tracking-[0.14em] text-red-600"><span class="h-1.5 w-1.5 rounded-full bg-red-500"></span>Incorrect</span>';
+			}
+
+			function createCard(idx, pos){
+				const q = QUESTIONS_DATA[idx];
+				const isBookmarked = bookmarks.has(idx);
+				const isAttempted = attempted[idx];
+				const sel = answers[idx];
+				const letters=['A','B','C','D'];
+				const card = document.createElement('div');
+				card.id = 'qcard-'+idx;
+				card.className = 'overflow-hidden rounded-lg border bg-surface transition-colors ' + (isAttempted ? (isCorrectArr[idx] ? 'border-emerald-600/40' : 'border-red-500/40') : 'border-hairline');
+				const ncertBadge = q.ncertVerified ? '<span class="inline-flex items-center rounded border border-emerald-600/25 bg-emerald-500/10 px-1.5 py-0.5 font-console text-[10px] font-bold uppercase tracking-[0.1em] text-emerald-700">NCERT</span>' : '';
+				const codeBadge = q.code ? `<span class="inline-flex items-center rounded border border-hairline bg-canvas-soft px-1.5 py-0.5 font-console text-[10px] font-semibold uppercase tracking-[0.08em] text-ink-muted">${escapeHtml(q.code)}</span>` : '';
+				const imageUrl = safeImageUrl(q.imagePublic || q.image);
+				const imgHtml = imageUrl ? `<div class="mt-4 overflow-hidden rounded-md border border-hairline bg-canvas-soft select-none"><img src="${imageUrl}" class="w-full object-contain select-none" style="max-height:460px; user-select:none; -webkit-user-select:none;" loading="lazy" alt="Question figure" draggable="false" /></div>` : '';
+				const imgPathHtml = '';
+				const optionsHtml = q.options.map((opt,i)=>{
+					const isSel = sel===i;
+					const isCorr = q.correct===i;
+					let base='border-hairline bg-surface hover:border-ink-faint hover:bg-canvas-soft/60';
+					let keyCls='border-hairline bg-canvas-soft text-ink-muted';
+					let tag='';
+					if(isAttempted){
+						if(isCorr) { base='border-emerald-600 bg-emerald-500/[0.07]'; keyCls='bg-emerald-600 border-emerald-600 text-white'; tag='<span class="shrink-0 rounded border border-emerald-600/30 bg-emerald-500/10 px-1.5 py-0.5 font-console text-[10px] font-bold uppercase tracking-[0.1em] text-emerald-700">Correct</span>'; }
+						else if(isSel && !isCorr) { base='border-red-500 bg-red-500/[0.06]'; keyCls='bg-red-600 border-red-600 text-white'; tag='<span class="shrink-0 rounded border border-red-500/30 bg-red-500/10 px-1.5 py-0.5 font-console text-[10px] font-bold uppercase tracking-[0.1em] text-red-700">Yours</span>'; }
+						else base='border-hairline bg-surface opacity-55';
+					} else if(isSel) { base='border-primary bg-primary/[0.06]'; keyCls='bg-primary border-primary text-white'; }
+					const key = `<span class="flex h-7 w-7 shrink-0 items-center justify-center rounded border font-console text-[12px] font-bold ${keyCls}">${letters[i]}</span>`;
+					const imgMatch = opt.match(/!\[.*?\]\((.*?)\)/);
+					let optContent;
+					if(imgMatch) {
+						const imgPath = imgMatch[1].replace(/\\/g, '/');
+						const safePath = safeImageUrl(imgPath);
+						optContent = safePath ? `<img src="${safePath}" class="max-h-36 w-auto object-contain rounded select-none" loading="lazy" alt="Option image" draggable="false" style="pointer-events:none; user-select:none; -webkit-user-select:none;" />` : '';
+					} else {
+						optContent = `<span class="flex-1 text-body-sm leading-snug text-ink">${contentHtml(opt, q.trustedHtml)}</span>`;
+					}
+					return `<button type="button" data-idx="${idx}" data-opt="${i}" class="flex w-full items-center gap-3 rounded-md border px-3.5 py-3 text-left transition-colors ${base}"><div class="flex items-center">${key}</div>${optContent}${tag}</button>`;
+				}).join('');
+				const verdict = isAttempted && !isCorrectArr[idx] ? `<div class="mt-4 rounded-md border border-red-500/30 bg-red-500/[0.06]"><div class="flex items-center justify-between border-b border-red-500/20 px-3.5 py-2"><span class="font-console text-[10px] font-bold uppercase tracking-[0.14em] text-red-700">Verdict // Incorrect</span><span class="font-console text-[10px] font-semibold uppercase tracking-[0.1em] text-red-600">−1 mark</span></div><div class="grid grid-cols-2 divide-x divide-red-500/20"><div class="px-3.5 py-2.5"><p class="font-console text-[10px] uppercase tracking-[0.12em] text-ink-faint">Your response</p><p class="mt-0.5 font-console text-[13px] font-bold text-red-700">Option ${letters[sel] ?? '—'}</p></div><div class="px-3.5 py-2.5"><p class="font-console text-[10px] uppercase tracking-[0.12em] text-ink-faint">Correct response</p><p class="mt-0.5 font-console text-[13px] font-bold text-emerald-700">Option ${letters[q.correct]}</p></div></div></div>` : '';
+				const solution = isAttempted ? `<div class="mt-4 overflow-hidden rounded-md border border-hairline bg-canvas-soft/50"><div class="flex items-center justify-between border-b border-hairline px-4 py-2.5"><span class="font-console text-[10px] font-bold uppercase tracking-[0.14em] text-ink">Solution // Analysis</span><span class="font-console text-[10px] uppercase tracking-[0.1em] text-ink-faint">+4 on correct</span></div><div class="px-4 py-3.5"><p class="text-body-sm leading-relaxed text-ink-secondary">${q.solution}</p><button class="show-ncert mt-3 inline-flex items-center gap-1 font-console text-[11px] font-bold uppercase tracking-[0.1em] text-primary hover:underline" data-idx="${idx}">View NCERT ref &rarr;</button></div></div>` : '<div class="mt-4 flex items-center gap-2.5 rounded-md border border-dashed border-hairline px-3.5 py-2.5"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-amber-400"></span><span class="font-console text-[11px] uppercase tracking-[0.1em] text-ink-muted">Attempt to unlock solution</span></div>';
+				const highlightNote = highlights[idx] ? `<div class="mt-3 inline-flex items-center gap-1.5 rounded border border-status-amber-border bg-status-amber-bg px-2 py-1 font-console text-[11px] font-medium uppercase tracking-[0.06em] text-status-amber-text">Marked ${highlights[idx].color}${highlights[idx].note ? ' — '+escapeHtml(highlights[idx].note) : ''}</div>` : '';
+				const doubtBadge = doubts.has(idx) ? '<span class="rounded bg-amber-400/20 border border-amber-500/30 px-1.5 py-0.5 font-console text-[10px] font-bold uppercase tracking-[0.08em] text-amber-700">Doubt</span>' : '';
+				card.innerHTML = `
+					<div class="flex flex-wrap items-center justify-between gap-2 border-b border-hairline bg-canvas-soft/40 px-4 py-2.5 sm:px-5">
+						<div class="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1">
+							<span class="font-console text-[12px] font-bold tabular-nums text-ink">Q-${String(pos).padStart(3,'0')}</span>
+							<span class="hidden h-3 w-px bg-hairline sm:inline-block"></span>
+							<span class="truncate font-console text-[10.5px] font-medium uppercase tracking-[0.12em] text-ink-muted">${escapeHtml(q.subtopic)}</span>
+							${ncertBadge}
+							${codeBadge}
+							${doubtBadge}
+						</div>
+						<div class="flex items-center gap-2.5">
+							${statusBadge(idx)}
+							<button class="bookmark-btn inline-flex items-center gap-1.5 rounded border px-2.5 py-1 font-console text-[10.5px] font-bold uppercase tracking-[0.08em] transition-colors ${isBookmarked ? 'border-primary bg-primary text-white' : 'border-hairline bg-surface text-ink-muted hover:border-ink-faint hover:text-ink'}" data-idx="${idx}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M7 4a2 2 0 0 0-2 2v14l7-5 7 5V6a2 2 0 0 0-2-2H7Z" stroke="currentColor" fill="${isBookmarked ? 'currentColor' : 'none'}" stroke-width="2"/></svg> ${isBookmarked ? 'Saved' : 'Save'}</button>
+							<div class="relative">
+								<button class="more-btn inline-flex h-7 w-7 items-center justify-center rounded border border-hairline bg-surface font-console text-[13px] text-ink-muted hover:text-ink" data-idx="${idx}">⋮</button>
+								<div class="more-menu hidden absolute right-0 top-9 z-20 w-56 overflow-hidden rounded-md border border-hairline bg-surface py-1 shadow-lift" data-idx="${idx}">
+									<button data-action="share" class="flex w-full px-4 py-2 text-left font-console text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-secondary hover:bg-canvas-soft">Share link</button>
+									<button data-action="doubt" class="flex w-full px-4 py-2 text-left font-console text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-secondary hover:bg-canvas-soft">Toggle doubt</button>
+									<button data-action="clear" class="flex w-full px-4 py-2 text-left font-console text-[11px] font-semibold uppercase tracking-[0.08em] text-red-600 hover:bg-status-red-bg">Reset item</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="px-4 py-5 sm:px-5">
+						<div class="text-body-md leading-relaxed text-ink"><span class="mr-1 font-console text-[13px] font-bold text-ink-faint">${String(pos).padStart(2,'0')}.</span> ${contentHtml(q.question, q.trustedHtml)}</div>
+						${imgHtml}
+						${imgPathHtml}
+						<div class="mt-4 grid gap-2">${optionsHtml}</div>
+						${verdict}
+						${solution}
+						${highlightNote}
+						<div class="mt-4 flex flex-wrap gap-1.5 border-t border-hairline pt-3.5">
+							<button class="hint-btn inline-flex items-center rounded border border-hairline bg-surface px-2.5 py-1.5 font-console text-[10.5px] font-bold uppercase tracking-[0.08em] text-ink-muted hover:border-ink-faint hover:text-ink" data-idx="${idx}">Hint</button>
+							<button class="highlight-btn inline-flex items-center gap-1.5 rounded border border-hairline bg-surface px-2.5 py-1.5 font-console text-[10.5px] font-bold uppercase tracking-[0.08em] text-ink-muted hover:border-ink-faint hover:text-ink" data-idx="${idx}"><span class="h-2 w-2 rounded-[2px] bg-amber-400"></span> Mark</button>
+							<button class="note-btn inline-flex items-center rounded border border-hairline bg-surface px-2.5 py-1.5 font-console text-[10.5px] font-bold uppercase tracking-[0.08em] text-ink-muted hover:border-ink-faint hover:text-ink" data-idx="${idx}">Note</button>
+						</div>
+						<div class="hint-box hidden mt-3 rounded-md border border-hairline bg-canvas-soft/50 p-3.5" data-idx="${idx}"><p class="font-console text-[10px] font-bold uppercase tracking-[0.14em] text-ink-faint">Hint</p><p class="mt-1 text-body-sm text-ink-muted">${contentHtml(q.hint, q.trustedHtml)}</p></div>
+						<div class="note-box hidden mt-3 rounded-md border border-hairline bg-canvas-soft/30 p-3.5" data-idx="${idx}"><textarea rows="2" placeholder="Add note..." class="note-input w-full rounded-md border border-hairline bg-surface px-3 py-2 text-body-sm text-ink placeholder:text-ink-faint" data-idx="${idx}">${escapeHtml(notes[idx] || '')}</textarea><button class="save-note mt-2 rounded-md bg-ink px-4 py-1.5 font-console text-[11px] font-bold uppercase tracking-[0.08em] text-white" data-idx="${idx}">Save note</button></div>
+					</div>
+				`;
+				return card;
+			}
+
+			function renderList(){
+				questionsList.innerHTML='';
+				const display = getPageIndices();
+				if(display.length===0){
+					questionsList.innerHTML='<div class="rounded-lg border border-hairline bg-surface p-8 text-center font-console text-[12px] uppercase tracking-[0.1em] text-ink-muted">No items for this filter.</div>';
+					updatePalette();
+					renderPagination();
+					return;
+				}
+				display.forEach((idx)=>{
+					const pos = filteredIndices.indexOf(idx)+1;
+					const card = createCard(idx, pos);
+					questionsList.appendChild(card);
+				});
+				questionsList.querySelectorAll('[data-opt]').forEach(btn=>{
+					btn.addEventListener('click', ()=>{
+						const idx=parseInt(btn.dataset.idx); const opt=parseInt(btn.dataset.opt);
+						if(attempted[idx]) return;
+						answers[idx]=opt; attempted[idx]=true; isCorrectArr[idx]=opt===QUESTIONS_DATA[idx].correct;
+						renderList(); updatePalette(); showToast(isCorrectArr[idx]?'Correct +4':'Incorrect -1');
+					});
+				});
+				questionsList.querySelectorAll('.bookmark-btn').forEach(b=>{
+					b.addEventListener('click', ()=>{
+						const idx=parseInt(b.dataset.idx);
+						if(bookmarks.has(idx)) bookmarks.delete(idx); else bookmarks.add(idx);
+						renderList(); updatePalette(); showToast(bookmarks.has(idx)?'Saved':'Removed');
+					});
+				});
+				questionsList.querySelectorAll('.hint-btn').forEach(b=>{
+					b.addEventListener('click', ()=>{
+						const idx=b.dataset.idx;
+						const box=questionsList.querySelector('.hint-box[data-idx="'+idx+'"]');
+						box.classList.toggle('hidden');
+					});
+				});
+				questionsList.querySelectorAll('.highlight-btn').forEach(b=>{
+					b.addEventListener('click', ()=>{
+						const idx=parseInt(b.dataset.idx);
+						paletteSelected=idx;
+						document.getElementById('highlightModal').classList.remove('hidden');
+						document.getElementById('highlightModal').dataset.idx=idx;
+					});
+				});
+				questionsList.querySelectorAll('.note-btn').forEach(b=>{
+					b.addEventListener('click', ()=>{
+						const idx=b.dataset.idx;
+						const box=questionsList.querySelector('.note-box[data-idx="'+idx+'"]');
+						box.classList.toggle('hidden');
+					});
+				});
+				questionsList.querySelectorAll('.save-note').forEach(b=>{
+					b.addEventListener('click', ()=>{
+						const idx=parseInt(b.dataset.idx);
+						const inp=questionsList.querySelector('.note-input[data-idx="'+idx+'"]');
+						notes[idx]=inp.value;
+						showToast('Note saved');
+					});
+				});
+				questionsList.querySelectorAll('.more-btn').forEach(b=>{
+					b.addEventListener('click', (e)=>{
+						e.stopPropagation();
+						const idx=b.dataset.idx;
+						const menu=questionsList.querySelector('.more-menu[data-idx="'+idx+'"]');
+						menu.classList.toggle('hidden');
+					});
+				});
+				questionsList.querySelectorAll('.more-menu button').forEach(btn=>{
+					btn.addEventListener('click', ()=>{
+						const menu=btn.closest('.more-menu');
+						const idx=parseInt(menu.dataset.idx);
+						const act=btn.dataset.action;
+						menu.classList.add('hidden');
+						if(act==='share'){ const url=location.href+'#q'+(filteredIndices.indexOf(idx)+1); if(navigator.share) navigator.share({title:document.title, url}).catch(()=>{}); else navigator.clipboard.writeText(url).then(()=>showToast('Link copied')); }
+						else if(act==='clear'){ answers[idx]=null; attempted[idx]=false; isCorrectArr[idx]=null; renderList(); updatePalette(); showToast('Reset'); }
+						else if(act==='doubt'){ if(doubts.has(idx)) doubts.delete(idx); else doubts.add(idx); renderList(); updatePalette(); }
+					});
+				});
+				questionsList.querySelectorAll('.show-ncert').forEach(btn=>{
+					btn.addEventListener('click', ()=> showToast('NCERT ref opening soon'));
+				});
+				updatePalette();
+				renderPagination();
+			}
+
+			const highlightModal=document.getElementById('highlightModal');
+			const highlightSave=document.getElementById('highlightSave');
+			const highlightClose=document.getElementById('highlightClose');
+			const highlightCancel=document.getElementById('highlightCancel');
+			const highlightBackdrop=document.getElementById('highlightBackdrop');
+			const highlightNote=document.getElementById('highlightNote');
+			let selColor='yellow';
+			document.querySelectorAll('.highlight-color').forEach(btn=>{
+				btn.addEventListener('click', ()=>{
+					document.querySelectorAll('.highlight-color').forEach(b=> b.classList.remove('ring-2'));
+					btn.classList.add('ring-2'); selColor=btn.dataset.color;
+				});
+			});
+			if(highlightSave) highlightSave.addEventListener('click', ()=>{
+				const idx=parseInt(highlightModal.dataset.idx||paletteSelected);
+				highlights[idx]={color:selColor, note:highlightNote.value.trim()};
+				highlightModal.classList.add('hidden'); highlightNote.value=''; renderList(); showToast('Marked');
+			});
+			if(highlightClose) highlightClose.addEventListener('click', ()=> highlightModal.classList.add('hidden'));
+			if(highlightCancel) highlightCancel.addEventListener('click', ()=> highlightModal.classList.add('hidden'));
+			if(highlightBackdrop) highlightBackdrop.addEventListener('click', ()=> highlightModal.classList.add('hidden'));
+
+			paletteToggle.addEventListener('click', ()=> paletteModal.classList.remove('hidden'));
+			paletteClose.addEventListener('click', ()=> paletteModal.classList.add('hidden'));
+			paletteBackdrop.addEventListener('click', ()=> paletteModal.classList.add('hidden'));
+			paletteGo.addEventListener('click', ()=>{
+				const el=document.getElementById('qcard-'+paletteSelected);
+				if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+				paletteModal.classList.add('hidden');
+			});
+			document.querySelectorAll('.subtopic-filter-btn').forEach(btn=>{
+				btn.addEventListener('click', ()=> applyFilter(btn.dataset.subtopic));
+			});
+			document.addEventListener('click', (e)=>{
+				if(!e.target.closest('.more-menu') && !e.target.closest('.more-btn')) document.querySelectorAll('.more-menu').forEach(m=>m.classList.add('hidden'));
+			});
+			// Disable image zoom / open in new tab — block context menu, drag, and direct image clicks
+			document.addEventListener('contextmenu', (e) => {
+				const t = e.target;
+				if (t instanceof HTMLImageElement || t.closest?.('div.select-none')) e.preventDefault();
+			});
+			document.addEventListener('dragstart', (e) => {
+				if (e.target instanceof HTMLImageElement) e.preventDefault();
+			});
+			if (questionsList) {
+				questionsList.addEventListener('click', (e) => {
+					if (e.target instanceof HTMLImageElement) { e.preventDefault(); e.stopPropagation(); }
+				});
+			}
+			renderList();
+
+			// Honor #subtopic hash from chapter page links
+			const initHash = decodeURIComponent(location.hash.replace('#',''));
+			if(initHash){
+				const match = Array.from(document.querySelectorAll('.subtopic-filter-btn')).find(b => b.dataset.subtopic === initHash);
+				if(match) applyFilter(initHash);
+			}
+		})();
+	</script>
+	<Footer />
+</Layout>

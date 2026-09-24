@@ -1,0 +1,135 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+const subjects = [
+	{
+		name: 'Physics',
+		tag: 'PHY',
+		slug: 'phy',
+		accent: 'var(--color-accent-sky)',
+		progress: 68,
+		chapters: 29,
+	},
+	{
+		name: 'Chemistry',
+		tag: 'CHE',
+		slug: 'chem',
+		accent: 'var(--color-accent-orange)',
+		progress: 42,
+		chapters: 20,
+	},
+	{
+		name: 'Botany',
+		tag: 'BOT',
+		slug: 'bot',
+		accent: 'var(--color-accent-green)',
+		progress: 55,
+		chapters: 22,
+	},
+	{
+		name: 'Zoology',
+		tag: 'ZOO',
+		slug: 'zoo',
+		accent: 'var(--color-accent-purple)',
+		progress: 30,
+		chapters: 16,
+	},
+];
+---
+
+<Layout title="Practice — NeetCore" description="Choose a subject and start practicing NEET questions. Full access for just ₹999.">
+	<Navbar />
+	<main class="mx-auto w-full max-w-6xl px-6 py-12">
+		<div class="max-w-3xl">
+			<span class="text-eyebrow font-semibold uppercase tracking-wider text-primary">Practice</span>
+			<h1 class="mt-3 text-ink" style="font-size: clamp(1.8rem, 4vw, 2.75rem); line-height: 1.1; letter-spacing: -1.875px; font-weight: 700">
+				Choose a subject to start practicing
+			</h1>
+			<p class="mt-4 text-body-md text-ink-muted">
+				Pick a subject to see its chapters. Start where you are, improve as you go.
+			</p>
+		</div>
+
+		<!-- Subjects grid -->
+		<div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+			{subjects.map((s) => (
+				<a
+					href={`/practice/${s.slug ?? s.tag.toLowerCase()}`}
+					class="group flex flex-col rounded-xl border border-hairline bg-surface p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lift"
+				>
+					<div class="flex flex-row items-center justify-between">
+						<div
+							class="flex h-12 w-12 items-center justify-center rounded-lg text-title font-bold"
+							style={`background-color: color-mix(in srgb, ${s.accent} 14%, transparent); color: ${s.accent}`}
+							aria-hidden="true"
+						>
+							{s.tag.slice(0, 2)}
+						</div>
+						<span class="rounded-full border border-hairline bg-canvas-soft px-2.5 py-1 text-[11px] font-medium leading-none text-ink-muted">{s.chapters} chapters</span>
+					</div>
+					<div class="mt-5 flex flex-1 flex-col">
+						<h2 class="text-heading-3 text-ink">{s.name}</h2>
+
+						<!-- Progress -->
+						<div class="mt-5">
+							<div class="flex items-center justify-between text-caption">
+								<span class="text-ink-faint">Your progress</span>
+								<span class="font-medium text-ink-secondary">{s.progress}%</span>
+							</div>
+							<div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-canvas-soft">
+								<div class="h-full rounded-full" style={`width: ${s.progress}%; background-color: ${s.accent}`}></div>
+							</div>
+						</div>
+
+						<span class="mt-auto inline-flex items-center gap-1 pt-6 text-body-sm font-medium text-primary transition-all duration-200 group-hover:gap-2">
+							Open practice
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">
+								<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</span>
+					</div>
+				</a>
+			))}
+		</div>
+
+		<!-- Mode shortcut cards -->
+		<div class="mt-16">
+			<div class="max-w-3xl">
+				<span class="text-eyebrow font-semibold uppercase tracking-wider text-primary">Quick start</span>
+				<h2 class="mt-3 text-heading-2 text-ink">Jump straight into practice</h2>
+			</div>
+			<div class="mt-8 grid gap-5 sm:grid-cols-3">
+				<a href="/practice/cbt" class="group rounded-xl border border-hairline bg-surface p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
+					<div class="flex items-start justify-between">
+						<h3 class="text-heading-3 text-ink">CBT Mode</h3>
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-1.5 text-ink-faint transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true">
+							<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</div>
+					<p class="mt-2 text-body-sm text-ink-muted">Timed exam-style test. 180 questions, full-syllabus.</p>
+				</a>
+				<a href="/practice/test" class="group rounded-xl border border-hairline bg-surface p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
+					<div class="flex items-start justify-between">
+						<h3 class="text-heading-3 text-ink">Custom Test</h3>
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-1.5 text-ink-faint transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true">
+							<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</div>
+					<p class="mt-2 text-body-sm text-ink-muted">Build from chapters and difficulty you choose.</p>
+				</a>
+				<a href="/practice/dpp" class="group rounded-xl border border-hairline bg-surface p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lift">
+					<div class="flex items-start justify-between">
+						<h3 class="text-heading-3 text-ink">DPP Set</h3>
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="mt-1.5 text-ink-faint transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-primary" aria-hidden="true">
+							<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</div>
+					<p class="mt-2 text-body-sm text-ink-muted">Daily practice problems pick themselves for you.</p>
+				</a>
+			</div>
+		</div>
+	</main>
+	<Footer />
+</Layout>

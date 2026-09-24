@@ -1,0 +1,29 @@
+---
+/**
+ * TrustBar — infinite marquee strip of platform promises.
+ * Two identical groups loop seamlessly; pauses on hover.
+ */
+const items = [
+	'Just ₹999 — everything unlocked',
+	'Physics · Chemistry · Botany · Zoology',
+	'Real NTA-style CBT interface',
+	'Custom tests, DPPs & flashcards',
+	'No subscriptions, no hidden charges',
+	'Practice 24/7 on any device',
+];
+---
+
+<div class="marquee border-b border-hairline bg-surface py-4" aria-label="Why aspirants choose NEETCore">
+	<div class="marquee-track">
+		{[0, 1].map((copy) => (
+			<div class="marquee-group" aria-hidden={copy === 1}>
+				{items.map((item) => (
+					<span class="flex items-center gap-12 whitespace-nowrap">
+						<span class="text-body-sm font-semibold text-ink-secondary">{item}</span>
+						<span class="inline-block h-1.5 w-1.5 rounded-full" style="background-color: var(--color-primary)" aria-hidden="true"></span>
+					</span>
+				))}
+			</div>
+		))}
+	</div>
+</div>

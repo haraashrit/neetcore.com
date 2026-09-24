@@ -1,0 +1,122 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+
+const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+const botClass11Chapters: Array<{ code: number; name: string }> = [
+	{ code: 1, name: 'The Living World' },
+	{ code: 2, name: 'Biological Classification' },
+	{ code: 3, name: 'Plant Kingdom' },
+	{ code: 4, name: 'Morphology of Flowering Plants' },
+	{ code: 5, name: 'Anatomy of Flowering Plants' },
+	{ code: 6, name: 'Cell: The Unit of Life' },
+	{ code: 7, name: 'Cell Cycle and Cell Division' },
+	{ code: 8, name: 'Photosynthesis in Higher Plants' },
+	{ code: 9, name: 'Respiration in Plants' },
+	{ code: 10, name: 'Plant Growth and Development' },
+];
+
+export function getStaticPaths() {
+	const _slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+	const _chapters = [
+		'The Living World',
+		'Biological Classification',
+		'Plant Kingdom',
+		'Morphology of Flowering Plants',
+		'Anatomy of Flowering Plants',
+		'Cell: The Unit of Life',
+		'Cell Cycle and Cell Division',
+		'Photosynthesis in Higher Plants',
+		'Respiration in Plants',
+		'Plant Growth and Development',
+	];
+	return _chapters.map((name) => ({
+		params: { chapter: _slugify(name) },
+	}));
+}
+
+const { chapter } = Astro.params;
+
+const currentChapter = botClass11Chapters.find((c) => slugify(c.name) === chapter);
+
+if (!currentChapter) {
+	throw new Error(`Chapter not found: ${chapter}`);
+}
+
+const allQuestionSets = [
+	{ id: 1, name: 'Concept Builder MCQs' },
+	{ id: 2, name: 'NCERT-Essentials', badge: 'Recommended' },
+	{ id: 3, name: 'Standard Question Bank', badge: 'Recommended' },
+	{ id: 4, name: 'NCERT Solved Examples NCERT Back Exercise' },
+	{ id: 5, name: 'NCERT Exemplar' },
+	{ id: 6, name: 'Advanced/Analytical-Type MCQs' },
+	{ id: 7, name: 'A/R Type Questions' },
+	{ id: 8, name: 'Previous Year Question Bank' },
+	{ id: 9, name: 'Exam-Specific Mock Level' },
+	{ id: 10, name: 'Final Revision Pack' },
+	{ id: 11, name: "Topper's Shortlist (Most Repeated Concepts)" },
+];
+
+const filteredIds = [2, 3, 5, 7, 8, 10];
+const questionSets = allQuestionSets.filter((s) => filteredIds.includes(s.id));
+---
+
+<Layout title={`${currentChapter.name} — Botany — NEETCore`} description={`Practice ${currentChapter.name} — ${questionSets.length} Question Sets curated for NEET Botany.`}>
+	<Navbar />
+	<main class="mx-auto w-full max-w-6xl px-6 py-12 sm:py-16">
+		<nav class="flex items-center gap-2 text-body-sm text-ink-muted" aria-label="Breadcrumb">
+			<a href="/practice" class="hover:text-primary hover:underline">Practice</a>
+			<span aria-hidden="true">/</span>
+			<a href="/practice/bot" class="hover:text-primary hover:underline">Botany</a>
+			<span aria-hidden="true">/</span>
+			<span class="font-medium text-ink">{currentChapter.name}</span>
+		</nav>
+
+		<a href="/practice/bot" class="mt-6 inline-flex items-center gap-1 text-body-sm font-medium text-primary hover:underline">← Back to Botany</a>
+
+		<h1 class="mt-6 text-ink" style="font-size: clamp(1.8rem, 4vw, 2.75rem); line-height: 1.1; letter-spacing: -1px; font-weight: 700">{currentChapter.name}</h1>
+		<p class="mt-3 max-w-2xl text-body-md text-ink-muted">Class 11 • Chapter {currentChapter.code} • Choose a Question Set to start practicing.</p>
+
+		<section class="mt-10">
+			<div class="flex items-baseline justify-between gap-4">
+				<h2 class="text-heading-3 text-ink">Question Sets</h2>
+				<span class="text-eyebrow font-medium uppercase tracking-wide text-ink-faint">{questionSets.length} sets</span>
+			</div>
+
+			<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+				{questionSets.map((set) => (
+					<div
+						class="group flex flex-col justify-between gap-6 rounded-xl border border-hairline bg-surface p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)]"
+					>
+						<div>
+							<div class="flex items-start justify-between gap-3">
+								<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/[0.08] text-primary ring-1 ring-primary/10 group-hover:bg-primary group-hover:text-white transition-colors">
+									<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+										<path d="M9 12h6M9 8h6M9 16h4M7 20h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+									</svg>
+								</div>
+								{set.badge && (
+									<span class="shrink-0 inline-flex items-center rounded-full bg-green-50 px-2.5 py-1 text-caption font-semibold tracking-wide text-green-700 ring-1 ring-green-200">{set.badge}</span>
+								)}
+							</div>
+							<h3 class="mt-4 text-body-md font-semibold leading-snug text-ink group-hover:text-primary transition-colors">{set.name}</h3>
+							<p class="mt-1.5 text-caption leading-relaxed text-ink-muted">NEET-focused practice • {currentChapter.name}</p>
+						</div>
+						<a
+							href={`/practice/bot/${slugify(currentChapter.name)}/${slugify(set.name)}`}
+							class="inline-flex w-fit items-center gap-1.5 rounded-full bg-ink px-5 py-2.5 text-body-sm font-semibold text-white transition-all hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+						>
+							Start practice
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="shrink-0 transition-transform group-hover:translate-x-0.5">
+								<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</a>
+					</div>
+				))}
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>

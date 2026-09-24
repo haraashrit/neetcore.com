@@ -1,0 +1,310 @@
+---
+import BrandLogo from './BrandLogo.astro';
+/**
+ * Navigation bar — slim sticky white bar, ink links, pill CTAs.
+ * Condenses to a mobile drawer below the md breakpoint.
+ * Includes day/night toggle (light/dark) with persistence.
+ */
+---
+
+<script is:inline>
+// Early theme apply to avoid FOUC
+(() => {
+  try {
+    const stored = localStorage.getItem('neetcore-theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = stored || (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch {}
+})();
+</script>
+
+<header id="site-header" class="sticky top-0 z-50 border-b border-hairline bg-canvas/90 backdrop-blur-md transition-shadow duration-300">
+	<!-- Scroll progress -->
+	<div id="scroll-progress" class="absolute inset-x-0 top-0 h-[3px]" style="background: linear-gradient(to right, var(--color-primary), var(--color-accent-sky))" aria-hidden="true"></div>
+	<nav class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-6">
+		<!-- Wordmark -->
+		<a href="/" class="flex items-center gap-2 text-ink" aria-label="NEETCore home">
+			<BrandLogo class="h-10 w-auto" />
+		</a>
+
+		<!-- Desktop links -->
+		<div class="hidden items-center gap-1 md:flex">
+			<a href="/#subjects" data-spy="subjects" class="rounded-full px-3.5 py-1.5 text-body-sm font-medium text-ink-muted transition-colors hover:bg-canvas-soft hover:text-ink">Subjects</a>
+			<a href="/#practice" data-spy="practice" class="rounded-full px-3.5 py-1.5 text-body-sm font-medium text-ink-muted transition-colors hover:bg-canvas-soft hover:text-ink">Practice</a>
+			<a href="/#how" data-spy="how" class="rounded-full px-3.5 py-1.5 text-body-sm font-medium text-ink-muted transition-colors hover:bg-canvas-soft hover:text-ink">How it works</a>
+			<a href="https://github.com" target="_blank" rel="noopener noreferrer" class="rounded-full px-3.5 py-1.5 text-body-sm font-medium text-ink-muted transition-colors hover:bg-canvas-soft hover:text-ink">Open source</a>
+		</div>
+
+		<!-- Desktop CTAs + Theme toggle -->
+		<div class="hidden items-center gap-2 md:flex">
+			<button
+				id="theme-toggle"
+				type="button"
+				aria-label="Toggle day/night mode"
+				title="Toggle day/night"
+				class="relative inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-hairline bg-surface text-ink shadow-sm hover:bg-canvas-soft transition-colors"
+			>
+				<svg class="sun-icon absolute transition-all duration-300 ease-out" style="opacity: 1; transform: rotate(0deg) scale(1);" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.7"/>
+					<path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+				</svg>
+				<svg class="moon-icon absolute transition-all duration-300 ease-out" style="opacity: 0; transform: rotate(-90deg) scale(0.5);" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</button>
+			<a href="/login" class="rounded-full px-4 py-2 text-body-sm font-medium text-ink transition-colors hover:text-primary">Log in</a>
+			<a
+				href="/signup"
+				class="rounded-full px-5 py-2.5 text-body-sm font-semibold text-on-primary transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
+				style="background-color: var(--color-primary)"
+			>
+				Start practicing
+			</a>
+		</div>
+
+		<!-- Mobile actions -->
+		<div class="flex items-center gap-2 md:hidden">
+			<button
+				id="theme-toggle-mobile"
+				type="button"
+				aria-label="Toggle day/night mode"
+				class="relative inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-hairline bg-surface text-ink"
+			>
+				<svg class="sun-icon-m absolute transition-all duration-300 ease-out" style="opacity: 1; transform: rotate(0deg) scale(1);" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.7"/>
+					<path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+				</svg>
+				<svg class="moon-icon-m absolute transition-all duration-300 ease-out" style="opacity: 0; transform: rotate(-90deg) scale(0.5);" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+			</button>
+			<button
+				id="menu-toggle"
+				type="button"
+				class="flex h-9 w-9 items-center justify-center rounded-md text-ink transition-transform duration-200 active:scale-90"
+				aria-label="Open menu"
+				aria-expanded="false"
+			>
+				<span class="burger" aria-hidden="true">
+					<span class="burger-line burger-line-1"></span>
+					<span class="burger-line burger-line-2"></span>
+					<span class="burger-line burger-line-3"></span>
+				</span>
+			</button>
+		</div>
+	</nav>
+
+	<!-- Mobile drawer -->
+	<div id="mobile-menu" class="hidden border-t border-hairline bg-canvas px-6 py-4 md:hidden">
+		<div class="flex flex-col gap-4">
+			<a href="/#subjects" class="text-body-md text-ink-muted">Subjects</a>
+			<a href="/#practice" class="text-body-md text-ink-muted">Practice</a>
+			<a href="/#how" class="text-body-md text-ink-muted">How it works</a>
+			<a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-body-md text-ink-muted">Open source</a>
+			<div class="my-2 h-px bg-hairline"></div>
+			<a href="/login" class="text-body-md font-medium text-ink">Log in</a>
+			<a
+				href="/signup"
+				class="rounded-full px-5 py-2.5 text-center text-body-sm font-semibold text-on-primary transition-all duration-200 hover:opacity-90"
+				style="background-color: var(--color-primary)"
+			>
+				Start practicing
+			</a>
+		</div>
+	</div>
+</header>
+
+<style>
+	/* Burger → X morph, driven by aria-expanded (set in setOpen below).
+	   Lines glide to the vertical center and rotate into an X while the
+	   middle line fades out. Snappy 0.35s with the site-wide ease. */
+	.burger {
+		position: relative;
+		display: block;
+		width: 22px;
+		height: 22px;
+	}
+	.burger-line {
+		position: absolute;
+		left: 1px;
+		height: 2px;
+		border-radius: 2px;
+		background-color: currentColor;
+		transition:
+			top 0.35s var(--theme-ease),
+			transform 0.35s var(--theme-ease),
+			opacity 0.25s ease,
+			width 0.35s var(--theme-ease);
+	}
+	.burger-line-1 {
+		top: 4.5px;
+		width: 20px;
+	}
+	.burger-line-2 {
+		top: 10px;
+		width: 20px;
+	}
+	.burger-line-3 {
+		top: 15.5px;
+		width: 12px;
+	}
+	#menu-toggle[aria-expanded='true'] .burger-line-1 {
+		top: 10px;
+		transform: rotate(45deg);
+	}
+	#menu-toggle[aria-expanded='true'] .burger-line-2 {
+		opacity: 0;
+		transform: translateX(-6px);
+	}
+	#menu-toggle[aria-expanded='true'] .burger-line-3 {
+		top: 10px;
+		width: 20px;
+		transform: rotate(-45deg);
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.burger-line {
+			transition: none;
+		}
+	}
+</style>
+
+<script>
+	const toggle = document.getElementById('menu-toggle');
+	const menu = document.getElementById('mobile-menu');
+	function setOpen(open) {
+		if (!menu || !toggle) return;
+		menu.classList.toggle('hidden', !open);
+		toggle.setAttribute('aria-expanded', String(open));
+		toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+	}
+	toggle?.addEventListener('click', () => {
+		const isHidden = menu?.classList.contains('hidden');
+		setOpen(!!isHidden);
+	});
+	menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') setOpen(false);
+	});
+
+	// Theme toggle with smooth transitions
+	const themeToggle = document.getElementById('theme-toggle');
+	const themeToggleM = document.getElementById('theme-toggle-mobile');
+
+	function applyTheme(theme, animate = false) {
+		const root = document.documentElement;
+		const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		const syncMeta = (t) => {
+			const meta = document.querySelector('meta[name="theme-color"]');
+			if (meta) meta.setAttribute('content', t === 'dark' ? '#0a0a0f' : '#ffffff');
+		};
+
+		const commit = (t) => {
+			root.setAttribute('data-theme', t);
+			syncMeta(t);
+			try { localStorage.setItem('neetcore-theme', t); } catch {}
+		};
+
+		const syncIcons = (t) => {
+			const isDark = t === 'dark';
+			// Animate icons with rotation and scale
+			document.querySelectorAll('.sun-icon, .sun-icon-m').forEach(el => {
+				el.style.opacity = isDark ? '0' : '1';
+				el.style.transform = isDark ? 'rotate(90deg) scale(0.5)' : 'rotate(0deg) scale(1)';
+			});
+			document.querySelectorAll('.moon-icon, .moon-icon-m').forEach(el => {
+				el.style.opacity = isDark ? '1' : '0';
+				el.style.transform = isDark ? 'rotate(0deg) scale(1)' : 'rotate(-90deg) scale(0.5)';
+			});
+		};
+
+		// User-initiated toggle: cross-fade smoothly, never on first paint.
+		// Prefer the View Transitions snapshot (GPU cross-fade) where
+		// supported; otherwise flip synchronously and let the @property token
+		// transitions + .theme-transitioning fallback interpolate — no
+		// double-rAF delay, so the fade starts on the very next frame.
+		// 650ms cleanup matches the 600ms CSS cross-fade + slack.
+		if (animate && !reduce) {
+			syncIcons(theme);
+			const flip = () => commit(theme);
+			clearTimeout(applyTheme._timer);
+			if (document.startViewTransition) {
+				root.classList.add('theme-transitioning');
+				const vt = document.startViewTransition(flip);
+				vt.finished
+					?.catch(() => {})
+					.finally(() => root.classList.remove('theme-transitioning'));
+				applyTheme._timer = setTimeout(() => root.classList.remove('theme-transitioning'), 700);
+			} else {
+				root.classList.add('theme-transitioning');
+				flip();
+				applyTheme._timer = setTimeout(() => root.classList.remove('theme-transitioning'), 650);
+			}
+		} else {
+			commit(theme);
+			syncIcons(theme);
+		}
+	}
+
+	function toggleTheme(e){
+		const cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+		// Seed the circular-reveal origin at the tap point (falls back to
+		// screen center when triggered without a pointer, e.g. keyboard).
+		if (e && typeof e.clientX === 'number' && typeof e.clientY === 'number') {
+			const root = document.documentElement;
+			root.style.setProperty('--vt-x', e.clientX + 'px');
+			root.style.setProperty('--vt-y', e.clientY + 'px');
+		}
+		applyTheme(cur === 'light' ? 'dark' : 'light', true);
+	}
+
+	// Init icons on load
+	try {
+		const saved = document.documentElement.getAttribute('data-theme') || localStorage.getItem('neetcore-theme') || 'light';
+		applyTheme(saved);
+	} catch {}
+
+	themeToggle?.addEventListener('click', toggleTheme);
+	themeToggleM?.addEventListener('click', toggleTheme);
+
+	// Sync across tabs
+	window.addEventListener('storage', (e)=>{
+		if(e.key==='neetcore-theme' && e.newValue) applyTheme(e.newValue);
+	});
+
+	// Elevate header + drive scroll progress once the page is scrolled
+	const header = document.getElementById('site-header');
+	const progress = document.getElementById('scroll-progress');
+	function syncHeader() {
+		if (!header) return;
+		header.classList.toggle('shadow-card', window.scrollY > 8);
+		if (progress) {
+			const max = document.documentElement.scrollHeight - window.innerHeight;
+			progress.style.transform = `scaleX(${max > 0 ? Math.min(window.scrollY / max, 1) : 0})`;
+		}
+	}
+	syncHeader();
+	window.addEventListener('scroll', syncHeader, { passive: true });
+
+	// Scrollspy — highlight the nav link for the section in view
+	const spyLinks = [...document.querySelectorAll('[data-spy]')];
+	const spySections = spyLinks
+		.map((a) => document.getElementById(a.getAttribute('data-spy')))
+		.filter(Boolean);
+	if ('IntersectionObserver' in window && spySections.length) {
+		const spy = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (!entry.isIntersecting) return;
+					const id = entry.target.id;
+					spyLinks.forEach((a) =>
+						a.classList.toggle('nav-link-active', a.getAttribute('data-spy') === id)
+					);
+				});
+			},
+			{ rootMargin: '-40% 0px -55% 0px' }
+		);
+		spySections.forEach((s) => spy.observe(s));
+	}
+</script>

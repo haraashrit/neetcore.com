@@ -1,0 +1,149 @@
+---
+import QuestionPractice from '../../../../components/QuestionPractice.astro';
+import bioEssentialRaw from '../../../../data/bio-classification-essential.json';
+import plantKingdomRaw from '../../../../data/plant-kingdom-essential.json';
+import { makeCode } from '../../../../lib/codes';
+
+const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+const botClass11Chapters: Array<{ code: number; name: string }> = [
+	{ code: 1, name: 'The Living World' },
+	{ code: 2, name: 'Biological Classification' },
+	{ code: 3, name: 'Plant Kingdom' },
+	{ code: 4, name: 'Morphology of Flowering Plants' },
+	{ code: 5, name: 'Anatomy of Flowering Plants' },
+	{ code: 6, name: 'Cell: The Unit of Life' },
+	{ code: 7, name: 'Cell Cycle and Cell Division' },
+	{ code: 8, name: 'Photosynthesis in Higher Plants' },
+	{ code: 9, name: 'Respiration in Plants' },
+	{ code: 10, name: 'Plant Growth and Development' },
+];
+
+const allQuestionSets = [
+	{ id: 2, name: 'NCERT-Essentials', badge: 'Recommended' },
+	{ id: 3, name: 'Standard Question Bank', badge: 'Recommended' },
+	{ id: 5, name: 'NCERT Exemplar' },
+	{ id: 7, name: 'A/R Type Questions' },
+	{ id: 8, name: 'Previous Year Question Bank' },
+	{ id: 10, name: 'Final Revision Pack' },
+];
+
+export function getStaticPaths() {
+	const _slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+	const _chapters = [
+		'The Living World',
+		'Biological Classification',
+		'Plant Kingdom',
+		'Morphology of Flowering Plants',
+		'Anatomy of Flowering Plants',
+		'Cell: The Unit of Life',
+		'Cell Cycle and Cell Division',
+		'Photosynthesis in Higher Plants',
+		'Respiration in Plants',
+		'Plant Growth and Development',
+	];
+	const _sets = [
+		'NCERT-Essentials',
+		'Standard Question Bank',
+		'NCERT Exemplar',
+		'A/R Type Questions',
+		'Previous Year Question Bank',
+		'Final Revision Pack',
+	];
+	const paths: Array<{ params: { chapter: string; set: string } }> = [];
+	for (const ch of _chapters) {
+		for (const st of _sets) {
+			paths.push({ params: { chapter: _slugify(ch), set: _slugify(st) } });
+		}
+	}
+	return paths;
+}
+
+const { chapter, set } = Astro.params;
+
+const currentChapter = botClass11Chapters.find((c) => slugify(c.name) === chapter);
+const currentSet = allQuestionSets.find((s) => slugify(s.name) === set);
+
+if (!currentChapter || !currentSet) {
+	throw new Error(`Not found: ${chapter} / ${set}`);
+}
+
+// Real + Mock questions — Essential Bio Classification uses 250 shuffled QA from DR. ALI file
+const difficulties = ['Easy', 'Medium', 'Hard'] as const;
+const genericSubtopics: string[] = [];
+const bioClassificationSubtopics = [
+	'CLASSIFICATION',
+	'KINGDOM MONERA',
+	'KINGDOM PROTISTA',
+	'KINGDOM FUNGI',
+	'KINGDOM PLANTAE AND ANIMALIA',
+	'VIRUS, VIROIDS, PRIONS & LICHENS',
+	'MISCELLANEOUS QUESTIONS',
+];
+const plantKingdomSubtopics = [
+	'Introduction',
+	'Algae',
+	'Bryophytes',
+	'Pteridophytes',
+	'Gymnosperms',
+];
+const isBio = slugify(currentChapter.name) === 'biological-classification';
+const isPlantKingdom = slugify(currentChapter.name) === 'plant-kingdom';
+const isPlantKingdomSet = isPlantKingdom && ['ncert-essentials', 'standard-question-bank'].includes(slugify(currentSet.name));
+const activeSubtopics = isBio ? bioClassificationSubtopics : isPlantKingdom ? plantKingdomSubtopics : genericSubtopics;
+const isEssentialBio = isBio && slugify(currentSet.name) === 'ncert-essentials';
+const mockQuestions = isEssentialBio
+	? (bioEssentialRaw as any[]).map((q: any, idx: number) => ({
+		id: idx + 1,
+		code: makeCode('B', idx),
+		ncertVerified: q.ncertVerified ?? true,
+		difficulty: q.difficulty || difficulties[idx % 3],
+		accuracy: q.accuracy || 60,
+		level: q.level || 'Level 2',
+		subtopic: q.subtopic,
+		pyq: q.pyq || false,
+		question: q.question,
+		options: q.options,
+		correct: q.correct,
+		trustedHtml: false,
+		image: q.imagePublic || null,
+		imagePublic: q.imagePublic || null,
+		imagePath: null,
+		solution: q.solution || `Correct is Option ${String.fromCharCode(65 + q.correct)} — ${q.subtopic}`,
+		hint: q.hint || '',
+		ncertRef: q.ncertRef || `NCERT Class XI • ${q.subtopic}`,
+	}))
+	: isPlantKingdomSet
+	? (plantKingdomRaw as any[]).map((q: any, idx: number) => ({
+		id: idx + 1,
+		code: makeCode('B', 1000 + idx),
+		ncertVerified: q.ncertVerified ?? true,
+		difficulty: q.difficulty || difficulties[idx % 3],
+		accuracy: q.accuracy || 60,
+		level: q.level || 'Level 2',
+		subtopic: q.subtopic,
+		pyq: q.pyq || false,
+		question: q.question,
+		options: q.options,
+		correct: q.correct,
+		trustedHtml: false,
+		image: q.imagePublic || null,
+		imagePublic: q.imagePublic || null,
+		imagePath: null,
+		solution: q.solution || `Correct is Option ${String.fromCharCode(65 + q.correct)} — ${q.subtopic}`,
+		hint: q.hint || '',
+		ncertRef: q.ncertRef || `NCERT Class XI • Plant Kingdom • ${q.subtopic}`,
+	}))
+	: [];
+---
+
+<QuestionPractice
+	chapterName={currentChapter.name}
+	setName={currentSet.name}
+	subjectName="Botany"
+	subjectSlug="bot"
+	badgeCode={currentChapter.code}
+	badgeSet={currentSet.id}
+	subtopics={activeSubtopics}
+	questions={mockQuestions}
+/>

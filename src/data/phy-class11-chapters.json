@@ -1,0 +1,464 @@
+[
+    {
+        "code": 1,
+        "name": "Unit, Dimensions and Vector",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 2,
+        "name": "Motion In A Straight Line",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 3,
+        "name": "Motion In A Plane",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 4,
+        "name": "Laws of Motion",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 5,
+        "name": "Work, Energy and Power",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 6,
+        "name": "System of Particles And Rotational Motion",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 7,
+        "name": "Gravitation",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 8,
+        "name": "Properties of Solids",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 9,
+        "name": "Properties of Liquid",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 10,
+        "name": "Thermal Properties of Matter",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 11,
+        "name": "Thermodynamics",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 12,
+        "name": "Kinetic Theory of Gases",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 13,
+        "name": "Oscillations",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 14,
+        "name": "Waves",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    }
+]

@@ -1,0 +1,299 @@
+[
+    {
+        "code": 1,
+        "name": "Some Basic Concepts of Chemistry",
+        "subjectCode": "C",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 7,
+                "name": "A/R Type Questions"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            }
+        ]
+    },
+    {
+        "code": 2,
+        "name": "Structure of Atom",
+        "subjectCode": "C",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 7,
+                "name": "A/R Type Questions"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            }
+        ]
+    },
+    {
+        "code": 3,
+        "name": "Periodic Classification",
+        "subjectCode": "C",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 7,
+                "name": "A/R Type Questions"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            }
+        ]
+    },
+    {
+        "code": 4,
+        "name": "Chemical Bonding and Molecular Structure",
+        "subjectCode": "C",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 7,
+                "name": "A/R Type Questions"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            }
+        ]
+    },
+    {
+        "code": 5,
+        "name": "Chemical Thermodynamics",
+        "subjectCode": "C",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 7,
+                "name": "A/R Type Questions"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            }
+        ]
+    },
+    {
+        "code": 6,
+        "name": "Equilibrium",
+        "subjectCode": "C",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 7,
+                "name": "A/R Type Questions"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            }
+        ]
+    },
+    {
+        "code": 7,
+        "name": "Redox Reactions",
+        "subjectCode": "C",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 7,
+                "name": "A/R Type Questions"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            }
+        ]
+    },
+    {
+        "code": 8,
+        "name": "Organic Chemistry – Some Basic Principles and Techniques",
+        "subjectCode": "C",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 7,
+                "name": "A/R Type Questions"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            }
+        ]
+    },
+    {
+        "code": 9,
+        "name": "Hydrocarbons",
+        "subjectCode": "C",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 7,
+                "name": "A/R Type Questions"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            }
+        ]
+    }
+]

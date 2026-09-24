@@ -1,0 +1,6 @@
+﻿[
+  { "subjectCode": "P", "name": "Physics", "slug": "phy", "tag": "PHY" },
+  { "subjectCode": "C", "name": "Chemistry", "slug": "che", "tag": "CHE" },
+  { "subjectCode": "Z", "name": "Zoology", "slug": "zoo", "tag": "ZOO" },
+  { "subjectCode": "B", "name": "Botany", "slug": "bot", "tag": "BOT" }
+]

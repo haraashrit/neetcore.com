@@ -1,0 +1,194 @@
+---
+/**
+ * Hero — dark indigo band. Badge, display headline with shimmer accent,
+ * dual CTAs, avatar-cluster social proof, and a live-feel practice
+ * dashboard (streak, accuracy, subject bars, week dots) with a floating
+ * projected-score chip.
+ */
+const bars = [
+	{ name: 'Physics', pct: 72, accent: '#62aef0' },
+	{ name: 'Chemistry', pct: 64, accent: '#ff9a3c' },
+	{ name: 'Botany', pct: 81, accent: '#2ec94e' },
+	{ name: 'Zoology', pct: 58, accent: '#d6b6f6' },
+];
+const week = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+const avatars = [
+	{ initial: 'A', bg: 'linear-gradient(135deg, #0075de, #62aef0)' },
+	{ initial: 'R', bg: 'linear-gradient(135deg, #5b3df5, #d6b6f6)' },
+	{ initial: 'S', bg: 'linear-gradient(135deg, #0e9f6e, #6ee7a8)' },
+	{ initial: 'P', bg: 'linear-gradient(135deg, #dd5b00, #ffb15e)' },
+];
+---
+
+<section class="band-texture relative overflow-hidden" style="background-color: var(--color-secondary)">
+	<!-- Ambient glow blobs (decorative) -->
+	<div
+		class="pointer-events-none absolute -top-24 left-1/2 h-[28rem] w-[44rem] -translate-x-1/2 rounded-full opacity-25 blur-3xl animate-drift"
+		style="background: radial-gradient(closest-side, rgba(98, 174, 240, 0.55), transparent)"
+		aria-hidden="true"
+	></div>
+	<div
+		class="pointer-events-none absolute -bottom-32 -left-24 h-96 w-96 rounded-full opacity-20 blur-3xl animate-drift-soft"
+		style="background-color: var(--color-accent-purple)"
+		aria-hidden="true"
+	></div>
+	<div
+		class="pointer-events-none absolute -right-20 top-1/3 h-80 w-80 rounded-full opacity-15 blur-3xl animate-drift-soft"
+		style="background-color: var(--color-accent-pink); animation-delay: -5s;"
+		aria-hidden="true"
+	></div>
+
+	<div class="relative mx-auto w-full max-w-6xl px-6 pb-20 pt-24 text-center sm:pt-28">
+		<!-- Eyebrow badge -->
+		<span
+			class="animate-hero inline-flex items-center gap-2 rounded-full border border-white/10 px-4 py-1.5 text-eyebrow font-semibold"
+			style="background-color: rgba(255, 255, 255, 0.07); color: var(--color-accent-sky); --hero-delay: 0ms;"
+		>
+			<span class="animate-pulse-dot inline-block h-1.5 w-1.5 rounded-full" style="background-color: var(--color-accent-green)"></span>
+			Full NEET toolkit · Just ₹999
+		</span>
+
+		<h1 class="animate-hero mx-auto mt-8 max-w-4xl text-white" style="font-family: 'Grift', sans-serif; font-size: clamp(2.6rem, 6vw, 4rem); line-height: 1.04; letter-spacing: -0.02em; font-weight: 800; text-wrap: balance; --hero-delay: 90ms;">
+			Best-In-Class NEET practice.<br />
+			<span class="text-shimmer">At minimal cost.</span>
+		</h1>
+
+		<p class="animate-hero mx-auto mt-6 max-w-2xl text-white/80 text-body-md leading-relaxed text-pretty" style="--hero-delay: 180ms;">
+			80,000+ chapter-wise questions across Physics, Chemistry, Botany and Zoology — with real CBT
+			mocks, custom tests, daily DPPs and flashcards. One small price, zero paywalls.
+		</p>
+
+		<!-- CTAs -->
+		<div class="animate-hero mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row" style="--hero-delay: 270ms;">
+			<a
+				href="/signup"
+				class="btn-shine inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-body-md font-semibold text-white shadow-lift transition-all duration-200 hover:-translate-y-0.5 hover:opacity-95 active:scale-[0.98]"
+				style="background-color: var(--color-primary)"
+			>
+				Get full access — ₹999
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+				</svg>
+			</a>
+			<a
+				href="/#subjects"
+				class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 py-4 text-body-md font-medium text-white backdrop-blur-sm transition-all duration-200 hover:border-white/35 hover:bg-white/10"
+			>
+				Explore subjects
+			</a>
+		</div>
+
+		<!-- Social proof -->
+		<div class="animate-hero mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4" style="--hero-delay: 360ms;">
+			<div class="flex items-center" aria-hidden="true">
+				{avatars.map((a) => (
+					<span
+						class="-ml-2 flex h-9 w-9 items-center justify-center rounded-full text-[13px] font-bold text-white ring-2 first:ml-0"
+						style={`background: ${a.bg}; --tw-ring-color: rgba(33, 49, 131, 0.9);`}
+					>
+						{a.initial}
+					</span>
+				))}
+				<span class="-ml-2 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-[11px] font-bold text-white ring-2 backdrop-blur" style="--tw-ring-color: rgba(33, 49, 131, 0.9);">
+					+
+				</span>
+			</div>
+			<div class="flex items-center gap-1.5" aria-label="Rated 4.9 out of 5 by aspirants">
+				{[...Array(5)].map(() => (
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="#fbbf24" aria-hidden="true">
+						<path d="M12 2l2.9 6.26 6.86.84-5.08 4.68 1.3 6.77L12 17.5l-5.98 3.05 1.3-6.77L2.24 9.1l6.86-.84L12 2z" />
+					</svg>
+				))}
+				<span class="ml-1 text-caption font-medium text-white/75">Loved by aspirants across India</span>
+			</div>
+		</div>
+
+		<!-- Dashboard visual -->
+		<div class="reveal relative mx-auto mt-14 w-full max-w-4xl text-left">
+			<!-- Floating chip: projected score (desktop only) -->
+			<div
+				class="absolute -right-8 -top-7 z-10 hidden items-center gap-2.5 rounded-xl border border-white/10 bg-[#1a2560] px-4 py-3 shadow-pop lg:flex animate-float"
+				aria-hidden="true"
+			>
+				<span class="flex h-9 w-9 items-center justify-center rounded-full bg-white/10">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7ab8f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M3 17l6-6 4 4 8-8" />
+						<path d="M15 7h6v6" />
+					</svg>
+				</span>
+				<span>
+					<span class="block text-body-sm font-bold text-white">648 / 720</span>
+					<span class="block text-[11px] text-white/60">Projected score · ↑ +48</span>
+				</span>
+			</div>
+
+			<div class="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.05] shadow-pop backdrop-blur-sm">
+				<!-- Window chrome -->
+				<div class="flex items-center justify-between border-b border-white/10 px-5 py-3">
+					<div class="flex items-center gap-1.5" aria-hidden="true">
+						<span class="h-2.5 w-2.5 rounded-full bg-[#ff5f57]"></span>
+						<span class="h-2.5 w-2.5 rounded-full bg-[#febc2e]"></span>
+						<span class="h-2.5 w-2.5 rounded-full bg-[#28c840]"></span>
+					</div>
+					<span class="text-eyebrow font-medium text-white/50">Your practice dashboard</span>
+					<span class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-eyebrow font-semibold text-white/80" aria-hidden="true">
+						<span class="animate-pulse-dot inline-block h-1.5 w-1.5 rounded-full" style="background-color: var(--color-accent-green)"></span>
+						Live demo
+					</span>
+				</div>
+
+				<div class="grid gap-6 p-5 sm:p-7 lg:grid-cols-[1fr_1.2fr]">
+					<!-- Stat chips + streak week -->
+					<div>
+						<div class="grid grid-cols-3 gap-3">
+							<div class="rounded-xl border border-white/10 bg-white/[0.04] p-3 text-center">
+								<p class="text-title font-bold text-white">12</p>
+								<p class="mt-0.5 text-[11px] text-white/55">day streak</p>
+							</div>
+							<div class="rounded-xl border border-white/10 bg-white/[0.04] p-3 text-center">
+								<p class="text-title font-bold text-white">87%</p>
+								<p class="mt-0.5 text-[11px] text-white/55">accuracy</p>
+							</div>
+							<div class="rounded-xl border border-white/10 bg-white/[0.04] p-3 text-center">
+								<p class="text-title font-bold text-white">24</p>
+								<p class="mt-0.5 text-[11px] text-white/55">to revise</p>
+							</div>
+						</div>
+						<div class="mt-4 rounded-xl border border-white/10 bg-white/[0.04] p-4">
+							<p class="text-eyebrow font-semibold uppercase tracking-wider text-white/50">This week</p>
+							<div class="mt-3 flex items-center justify-between">
+								{week.map((d, i) => (
+									<span class="flex flex-col items-center gap-1.5">
+										<span
+											class={`flex h-8 w-8 items-center justify-center rounded-full text-[12px] font-bold ${i < 5 ? 'text-white' : 'text-white/40'}`}
+											style={i < 5 ? 'background-color: var(--color-primary)' : 'background-color: rgba(255,255,255,0.08)'}
+										>
+											{d}
+										</span>
+									</span>
+								))}
+							</div>
+						</div>
+					</div>
+					<!-- Subject bars -->
+					<div class="rounded-xl border border-white/10 bg-white/[0.04] p-4 sm:p-5">
+						<p class="text-eyebrow font-semibold uppercase tracking-wider text-white/50">Chapter accuracy</p>
+						<div class="mt-4 space-y-4">
+							{bars.map((b) => (
+								<div>
+									<div class="flex items-center justify-between text-caption">
+										<span class="font-medium text-white/80">{b.name}</span>
+										<span class="font-bold text-white">{b.pct}%</span>
+									</div>
+									<div class="mt-1.5 h-2 overflow-hidden rounded-full bg-white/10" role="img" aria-label={`${b.name} accuracy ${b.pct} percent`}>
+										<div class="bar-fill h-full rounded-full" style={`--w: ${b.pct}%; background: linear-gradient(to right, ${b.accent}, ${b.accent}cc);`}></div>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

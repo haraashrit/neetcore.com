@@ -1,0 +1,257 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+
+export function getStaticPaths() {
+	return [
+		{ params: { subject: 'phy' } },
+		{ params: { subject: 'chem' } },
+		{ params: { subject: 'che' } },
+		{ params: { subject: 'bot' } },
+		{ params: { subject: 'zoo' } },
+		{ params: { subject: 'cbt' } },
+		{ params: { subject: 'test' } },
+		{ params: { subject: 'dpp' } },
+	];
+}
+
+const { subject } = Astro.params;
+
+const titles: Record<string, { name: string; desc: string }> = {
+	phy: { name: 'Physics', desc: 'Mechanics, Optics, Modern Physics and Electromagnetism — 29 chapters of curated NEET Physics questions.' },
+	che: { name: 'Chemistry', desc: 'Physical, Organic and Inorganic Chemistry — 30 chapters mapped to NCERT.' },
+	bot: { name: 'Botany', desc: 'Plant Kingdom, Genetics and Ecology — 22 chapters of Botany practice.' },
+	zoo: { name: 'Zoology', desc: 'Human Physiology, Reproduction and Evolution — 16 chapters of Zoology practice.' },
+	cbt: { name: 'CBT Mode', desc: 'Full-syllabus timed test — 180 questions mirroring the real NTA exam interface.' },
+	test: { name: 'Custom Test', desc: 'Build a test from chapters and difficulty you choose. Coming soon.' },
+	dpp: { name: 'DPP Set', desc: 'Daily Practice Problems — auto-generated sets targeting your weak chapters.' },
+};
+
+const info = titles[subject === 'chem' ? 'che' : subject ?? ''] ?? { name: 'Practice', desc: 'Practice coming soon.' };
+
+const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+const phyClass11Chapters: Array<{ code: number; name: string }> = [
+	{ code: 1, name: 'Unit, Dimensions and Vector' },
+	{ code: 2, name: 'Motion In A Straight Line' },
+	{ code: 3, name: 'Motion In A Plane' },
+	{ code: 4, name: 'Laws of Motion' },
+	{ code: 5, name: 'Work, Energy and Power' },
+	{ code: 6, name: 'System of Particles And Rotational Motion' },
+	{ code: 7, name: 'Gravitation' },
+	{ code: 8, name: 'Properties of Solids' },
+	{ code: 9, name: 'Properties of Liquid' },
+	{ code: 10, name: 'Thermal Properties of Matter' },
+	{ code: 11, name: 'Thermodynamics' },
+	{ code: 12, name: 'Kinetic Theory of Gases' },
+	{ code: 13, name: 'Oscillations' },
+	{ code: 14, name: 'Waves' },
+];
+
+const phyClass12Chapters: Array<{ code: number; name: string }> = [
+	{ code: 15, name: 'Electric Charges and Fields' },
+	{ code: 16, name: 'Electric Potential and Capacitance' },
+	{ code: 17, name: 'Current Electricity' },
+	{ code: 18, name: 'Moving Charges and Magnetism' },
+	{ code: 19, name: 'Magnetism and Matter' },
+	{ code: 20, name: 'Electromagnetic Induction' },
+	{ code: 21, name: 'Alternating Current' },
+	{ code: 22, name: 'Electromagnetic Waves' },
+	{ code: 23, name: 'Ray Optics' },
+	{ code: 24, name: 'Wave Optics' },
+	{ code: 25, name: 'Dual Nature of Radiation and Matter' },
+	{ code: 26, name: 'Atoms' },
+	{ code: 27, name: 'Nuclei' },
+	{ code: 28, name: 'Semiconductors' },
+	{ code: 29, name: 'Electronic Devices' },
+];
+
+const chemistryChapters: Array<{ code: number; name: string }> = [
+	{ code: 1, name: 'Some Basic Concepts of Chemistry' },
+	{ code: 2, name: 'Structure of Atom' },
+	{ code: 3, name: 'Periodic Classification' },
+	{ code: 4, name: 'Chemical Bonding and Molecular Structure' },
+	{ code: 5, name: 'Chemical Thermodynamics' },
+	{ code: 6, name: 'Equilibrium' },
+	{ code: 7, name: 'Redox Reactions' },
+	{ code: 8, name: 'Organic Chemistry – Some Basic Principles and Techniques' },
+	{ code: 9, name: 'Hydrocarbons' },
+	{ code: 10, name: 'Solutions' },
+	{ code: 11, name: 'Electrochemistry' },
+	{ code: 12, name: 'Chemical Kinetics' },
+	{ code: 13, name: 'The D-and F-Block Elements' },
+	{ code: 14, name: 'Coordination Compounds' },
+	{ code: 15, name: 'P-Block[Complete]' },
+	{ code: 16, name: 'Haloalkanes and Haloarenes' },
+	{ code: 17, name: 'Alcohols, Phenols and Ethers' },
+	{ code: 18, name: 'Aldehydes, Ketones and Carboxylic Acids' },
+	{ code: 19, name: 'Amines' },
+	{ code: 20, name: 'Biomolecules' },
+];
+
+const botClass11Chapters: Array<{ code: number; name: string }> = [
+	{ code: 1, name: 'The Living World' },
+	{ code: 2, name: 'Biological Classification' },
+	{ code: 3, name: 'Plant Kingdom' },
+	{ code: 4, name: 'Morphology of Flowering Plants' },
+	{ code: 5, name: 'Anatomy of Flowering Plants' },
+	{ code: 6, name: 'Cell: The Unit of Life' },
+	{ code: 7, name: 'Cell Cycle and Cell Division' },
+	{ code: 8, name: 'Photosynthesis in Higher Plants' },
+	{ code: 9, name: 'Respiration in Plants' },
+	{ code: 10, name: 'Plant Growth and Development' },
+];
+
+const zooChapters: Array<{ code: number; name: string }> = [
+	{ code: 1, name: 'Animal Kingdom' },
+	{ code: 2, name: 'Structural Organisation in Animals' },
+	{ code: 3, name: 'Body Fluids and Circulation' },
+	{ code: 4, name: 'Breathing and Exchange of Gases' },
+	{ code: 5, name: 'Excretory Products and their Elimination' },
+	{ code: 6, name: 'Locomotion and Movement' },
+	{ code: 7, name: 'Neural Control and Coordination' },
+	{ code: 8, name: 'Chemical Coordination and Integration' },
+	{ code: 9, name: 'Digestion and Absorption' },
+	{ code: 10, name: 'Human Reproduction' },
+	{ code: 11, name: 'Reproductive Health' },
+	{ code: 12, name: 'Evolution' },
+	{ code: 13, name: 'Human Health and Disease' },
+	{ code: 14, name: 'Animal Husbandry' },
+];
+---
+
+<Layout title={`${info.name} — NEETCore`} description={info.desc}>
+	<Navbar />
+	<main class="mx-auto w-full max-w-6xl px-6 py-12 sm:py-16">
+		<a href="/practice" class="inline-flex items-center gap-1 text-body-sm font-medium text-primary hover:underline">← Back to practice</a>
+		<h1 class="mt-6 text-ink" style="font-size: clamp(1.8rem, 4vw, 2.75rem); line-height: 1.1; letter-spacing: -1px; font-weight: 700">{info.name}</h1>
+		<p class="mt-4 max-w-2xl text-body-md text-ink-muted">{info.desc}</p>
+
+		{subject === 'phy' ? (
+			<div class="mt-10 space-y-12">
+				<section>
+					<div class="flex items-baseline justify-between gap-4">
+						<h2 class="text-heading-3 text-ink">Class 11 Physics</h2>
+						<span class="text-eyebrow font-medium uppercase tracking-wide text-ink-faint">{phyClass11Chapters.length} chapters</span>
+					</div>
+					<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+					{phyClass11Chapters.map((chapter) => (
+						<a
+							href={`/practice/phy/${slugify(chapter.name)}`}
+							data-chapter-code={chapter.code}
+							aria-label={chapter.name}
+							class="group flex items-center justify-between gap-3 rounded-xl border border-hairline bg-surface px-5 py-4 text-left transition-all duration-200 hover:border-primary/20 hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+						>
+							<span class="text-body-sm font-medium leading-snug text-ink group-hover:text-primary transition-colors">{chapter.name}</span>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="shrink-0 text-ink-faint transition-transform group-hover:translate-x-0.5 group-hover:text-primary">
+								<path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</a>
+					))}
+					</div>
+				</section>
+				<section>
+					<div class="flex items-baseline justify-between gap-4">
+						<h2 class="text-heading-3 text-ink">Class 12 Physics</h2>
+						<span class="text-eyebrow font-medium uppercase tracking-wide text-ink-faint">{phyClass12Chapters.length} chapters</span>
+					</div>
+					<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+					{phyClass12Chapters.map((chapter) => (
+						<a
+							href={`/practice/phy/${slugify(chapter.name)}`}
+							data-chapter-code={chapter.code}
+							aria-label={chapter.name}
+							class="group flex items-center justify-between gap-3 rounded-xl border border-hairline bg-surface px-5 py-4 text-left transition-all duration-200 hover:border-primary/20 hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+						>
+							<span class="text-body-sm font-medium leading-snug text-ink group-hover:text-primary transition-colors">{chapter.name}</span>
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="shrink-0 text-ink-faint transition-transform group-hover:translate-x-0.5 group-hover:text-primary">
+								<path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+							</svg>
+						</a>
+					))}
+					</div>
+				</section>
+			</div>
+		) : subject === 'chem' || subject === 'che' ? (
+			<div class="mt-10">
+				<section>
+					<div class="flex items-baseline justify-between gap-4">
+						<h2 class="text-heading-3 text-ink">Chemistry Chapters</h2>
+						<span class="text-eyebrow font-medium uppercase tracking-wide text-ink-faint">{chemistryChapters.length} chapters</span>
+					</div>
+					<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+						{chemistryChapters.map((chapter) => (
+							<a
+								href={`/practice/che/${slugify(chapter.name)}`}
+								data-chapter-code={chapter.code}
+								aria-label={chapter.name}
+								class="group flex items-center justify-between gap-3 rounded-xl border border-hairline bg-surface px-5 py-4 text-left transition-all duration-200 hover:border-primary/20 hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+							>
+								<span class="text-body-sm font-medium leading-snug text-ink group-hover:text-primary transition-colors">{chapter.name}</span>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="shrink-0 text-ink-faint transition-transform group-hover:translate-x-0.5 group-hover:text-primary">
+									<path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</a>
+						))}
+					</div>
+				</section>
+			</div>
+		) : subject === 'bot' ? (
+			<div class="mt-10 space-y-12">
+				<section>
+					<div class="flex items-baseline justify-between gap-4">
+						<h2 class="text-heading-3 text-ink">Class 11 Botany</h2>
+						<span class="text-eyebrow font-medium uppercase tracking-wide text-ink-faint">{botClass11Chapters.length} chapters</span>
+					</div>
+					<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+						{botClass11Chapters.map((chapter) => (
+							<a
+								href={`/practice/bot/${slugify(chapter.name)}`}
+								data-chapter-code={chapter.code}
+								aria-label={chapter.name}
+								class="group flex items-center justify-between gap-3 rounded-xl border border-hairline bg-surface px-5 py-4 text-left transition-all duration-200 hover:border-primary/20 hover:shadow-[0_2px_12px_rgba(0,0,0,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+							>
+								<span class="text-body-sm font-medium leading-snug text-ink group-hover:text-primary transition-colors">{chapter.name}</span>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="shrink-0 text-ink-faint transition-transform group-hover:translate-x-0.5 group-hover:text-primary">
+									<path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</a>
+						))}
+					</div>
+				</section>
+			</div>
+		) : subject === 'zoo' ? (
+			<div class="mt-10 space-y-12">
+				<section>
+					<div class="flex items-baseline justify-between gap-4">
+						<h2 class="text-heading-3 text-ink">Zoology Chapters</h2>
+						<span class="text-eyebrow font-medium uppercase tracking-wide text-ink-faint">{zooChapters.length} chapters</span>
+					</div>
+					<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+						{zooChapters.map((chapter) => (
+							<a
+								href={`/practice/zoo/${slugify(chapter.name)}`}
+								data-chapter-code={chapter.code}
+								aria-label={chapter.name}
+								class="group flex items-center justify-between gap-3 rounded-xl border border-hairline bg-surface px-5 py-4 text-left transition-all duration-200 hover:border-primary/20 hover:shadow-[0_2px_12px_rgba(0,0,0.06)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+							>
+								<span class="text-body-sm font-medium leading-snug text-ink group-hover:text-primary transition-colors">{chapter.name}</span>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="shrink-0 text-ink-faint transition-transform group-hover:translate-x-0.5 group-hover:text-primary">
+									<path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</a>
+						))}
+					</div>
+				</section>
+			</div>
+		) : (
+			<div class="mt-10 rounded-xl border border-hairline bg-surface p-8 text-center">
+				<p class="text-heading-3 text-ink">Coming soon</p>
+				<p class="mt-2 text-body-sm text-ink-muted">We're building the full question bank for {info.name}. Check back shortly or <a href="/contact" class="text-primary hover:underline">let us know</a> what you'd like first.</p>
+				<a href="/signup" class="mt-6 inline-flex items-center justify-center rounded-full px-8 py-3 text-body-sm font-semibold text-white" style="background-color: var(--color-primary)">Start practicing — ₹999 unlocks all</a>
+			</div>
+		)}
+	</main>
+	<Footer />
+</Layout>

@@ -1,0 +1,959 @@
+[
+    {
+        "code": 1,
+        "name": "Unit, Dimensions and Vector",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 2,
+        "name": "Motion In A Straight Line",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 3,
+        "name": "Motion In A Plane",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 4,
+        "name": "Laws of Motion",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 5,
+        "name": "Work, Energy and Power",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 6,
+        "name": "System of Particles And Rotational Motion",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 7,
+        "name": "Gravitation",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 8,
+        "name": "Properties of Solids",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 9,
+        "name": "Properties of Liquid",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 10,
+        "name": "Thermal Properties of Matter",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 11,
+        "name": "Thermodynamics",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 12,
+        "name": "Kinetic Theory of Gases",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 13,
+        "name": "Oscillations",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 14,
+        "name": "Waves",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 15,
+        "name": "Electric Charges and Fields",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 16,
+        "name": "Electric Potential and Capacitance",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 17,
+        "name": "Current Electricity",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 18,
+        "name": "Moving Charges and Magnetism",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 19,
+        "name": "Magnetism and Matter",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 20,
+        "name": "Electromagnetic Induction",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 21,
+        "name": "Alternating Current",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 22,
+        "name": "Electromagnetic Waves",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 23,
+        "name": "Ray Optics",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 24,
+        "name": "Wave Optics",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 25,
+        "name": "Dual Nature of Radiation and Matter",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 26,
+        "name": "Atoms",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 27,
+        "name": "Nuclei",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 28,
+        "name": "Semiconductors",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    },
+    {
+        "code": 29,
+        "name": "Electronic Devices",
+        "subjectCode": "P",
+        "questionSet": [
+            {
+                "id": 1,
+                "name": "Concept Builder MCQs"
+            },
+            {
+                "id": 2,
+                "name": "NCERT-Essentials",
+                "badge": "Recommended"
+            },
+            {
+                "id": 3,
+                "name": "Standard Question Bank",
+                "badge": "Recommended"
+            },
+            {
+                "id": 6,
+                "name": "Advanced/Analytical-Type MCQs"
+            },
+            {
+                "id": 8,
+                "name": "Previous Year Question Bank"
+            },
+            {
+                "id": 10,
+                "name": "Final Revision Pack"
+            }
+        ]
+    }
+]

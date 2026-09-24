@@ -1,0 +1,64 @@
+---
+/**
+ * BrandLogo — NEETCore wordmark.
+ * Single asset (/neetcore-logo.png, black on transparent), two layers:
+ * day mode shows black as-is, night mode shows a pre-inverted white copy.
+ * Layers cross-fade via opacity (compositor-only, GPU-cheap) using the
+ * site-wide --theme-duration / --theme-ease tokens, so the logo stays in
+ * sync with the page cross-fade. Same src on both layers = one download.
+ */
+interface Props {
+	class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+<span class="brand-logo-wrap">
+	<img
+		src="/neetcore-logo.png"
+		alt="NEETCore"
+		class={`brand-logo-img brand-logo-light ${className}`}
+		width="2069"
+		height="760"
+		loading="eager"
+		decoding="async"
+		fetchpriority="high"
+	/>
+	<img
+		src="/neetcore-logo.png"
+		alt=""
+		aria-hidden="true"
+		class={`brand-logo-img brand-logo-dark ${className}`}
+		width="2069"
+		height="760"
+		loading="eager"
+		decoding="async"
+	/>
+</span>
+<style>
+	.brand-logo-wrap {
+		position: relative;
+		display: inline-flex;
+	}
+	.brand-logo-img {
+		transition: opacity var(--theme-duration) var(--theme-ease);
+	}
+	.brand-logo-dark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		filter: invert(1);
+		opacity: 0;
+		pointer-events: none;
+	}
+	html[data-theme='dark'] .brand-logo-light {
+		opacity: 0;
+	}
+	html[data-theme='dark'] .brand-logo-dark {
+		opacity: 1;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.brand-logo-img {
+			transition: none;
+		}
+	}
+</style>

@@ -1,0 +1,81 @@
+---
+/**
+ * How it works — 3-step flow with numbered nodes and a connecting
+ * hairline that draws itself on scroll into view.
+ */
+const steps = [
+	{
+		number: 1,
+		title: 'Pick a subject or chapter',
+		desc: 'Browse Physics, Chemistry, Botany or Zoology. Filter by chapter, topic, or difficulty. Start wherever you are in your syllabus.',
+	},
+	{
+		number: 2,
+		title: 'Choose your practice mode',
+		desc: 'CBT for exam simulation, Custom Test for targeted drills, DPP for daily spaced repetition, or Flashcards for rapid review.',
+	},
+	{
+		number: 3,
+		title: 'Track and improve',
+		desc: 'See chapter accuracy, weak areas, and projected score after every session. Your revision queue fills automatically with what you missed.',
+	},
+];
+---
+
+<section id="how">
+	<div class="mx-auto w-full max-w-6xl px-6 py-24 sm:py-28">
+		<div class="reveal mx-auto max-w-3xl text-center">
+			<span class="text-eyebrow font-semibold uppercase tracking-wider text-primary">How it works</span>
+			<h2 class="mt-3 text-ink" style="font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.1; letter-spacing: -1px; font-weight: 700; text-wrap: balance;">
+				From syllabus to score in three steps.
+			</h2>
+		</div>
+
+		<div class="relative mt-16 grid gap-12 lg:grid-cols-3 lg:gap-8">
+			<!-- Connecting hairline (desktop only) — draws itself on scroll into view -->
+			<div
+				data-draw
+				class="absolute left-[16.6%] right-[16.6%] top-8 hidden h-px lg:block"
+				style="background: linear-gradient(to right, transparent, var(--color-hairline) 15%, var(--color-hairline) 85%, transparent)"
+				aria-hidden="true"
+			></div>
+
+			{steps.map((s, i) => (
+				<div class={`reveal reveal-d${i} relative flex flex-col items-center text-center`}>
+					<div
+						class="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl text-title font-bold text-white shadow-lift ring-1 ring-white/20"
+						style="background: linear-gradient(135deg, #2c3fa0, var(--color-secondary) 60%, #1a2560)"
+					>
+						{s.number}
+					</div>
+					<h3 class="mt-6 text-heading-3 text-ink">{s.title}</h3>
+					<p class="mt-3 max-w-xs text-body-sm text-ink-muted leading-relaxed">{s.desc}</p>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<script>
+	// Draw the connector line once the steps scroll into view
+	(() => {
+		const line = document.querySelector('[data-draw]');
+		if (!line) return;
+		if (!('IntersectionObserver' in window)) {
+			line.classList.add('is-drawn');
+			return;
+		}
+		const io = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((e) => {
+					if (e.isIntersecting) {
+						line.classList.add('is-drawn');
+						io.disconnect();
+					}
+				});
+			},
+			{ threshold: 0.4 }
+		);
+		io.observe(line);
+	})();
+</script>

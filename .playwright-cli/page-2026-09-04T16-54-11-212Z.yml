@@ -1,0 +1,254 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - navigation [ref=f1e3]:
+      - link "NEETCore home" [ref=f1e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f1e8]: NEETCore
+      - generic [ref=f1e9]:
+        - link "Subjects" [ref=f1e10] [cursor=pointer]:
+          - /url: /#subjects
+        - link "Practice" [ref=f1e11] [cursor=pointer]:
+          - /url: /#practice
+        - link "How it works" [ref=f1e12] [cursor=pointer]:
+          - /url: /#how
+        - link "Open source" [ref=f1e13] [cursor=pointer]:
+          - /url: https://github.com
+      - generic [ref=f1e14]:
+        - button "Toggle day/night mode" [ref=f1e15]
+        - link "Log in" [ref=f1e21] [cursor=pointer]:
+          - /url: /login
+        - link "Start practicing" [ref=f1e22] [cursor=pointer]:
+          - /url: /signup
+  - main [ref=f1e23]:
+    - generic [ref=f1e25]:
+      - generic [ref=f1e26]: Completely free. Forever.
+      - heading "Practice NEET questions. Zero cost. Zero barriers." [level=1] [ref=f1e28]: Practice NEET questions.Zero cost. Zero barriers.
+      - paragraph [ref=f1e29]: NEETCore gives you a library of quality-driven NEET questions in Physics, Chemistry, Botany and Zoology — available 24/7, completely free. Practice at your own pace, whenever you like.
+      - generic [ref=f1e30]:
+        - link "Start practicing free" [ref=f1e31] [cursor=pointer]:
+          - /url: /signup
+        - link "See how it works" [ref=f1e34] [cursor=pointer]:
+          - /url: /#how
+      - generic [ref=f1e35]:
+        - generic [ref=f1e36]: No credit card required
+        - generic [ref=f1e40]: Practice anytime, 24/7
+        - generic [ref=f1e45]: All four subjects covered
+      - generic [ref=f1e52]:
+        - generic [ref=f1e53]:
+          - generic [ref=f1e58]: neetcore.com/practice/phy
+          - generic [ref=f1e59]: 00:41:26
+        - generic [ref=f1e63]:
+          - generic [ref=f1e64]:
+            - generic [ref=f1e65]:
+              - generic [ref=f1e66]:
+                - generic [ref=f1e67]: Physics
+                - generic [ref=f1e68]: Motion in a Straight Line
+              - generic [ref=f1e69]: Question 12 of 180
+            - paragraph [ref=f1e70]: A particle moves along a straight line with velocityv = 4t m/s. What is its displacement betweent = 0 and t = 2 s?
+            - generic [ref=f1e71]:
+              - generic [ref=f1e72]:
+                - generic [ref=f1e73]: A
+                - generic [ref=f1e74]: 8 m
+              - generic [ref=f1e77]:
+                - generic [ref=f1e78]: B
+                - generic [ref=f1e79]: 16 m
+              - generic [ref=f1e80]:
+                - generic [ref=f1e81]: C
+                - generic [ref=f1e82]: 4 m
+              - generic [ref=f1e83]:
+                - generic [ref=f1e84]: D
+                - generic [ref=f1e85]: 2 m
+            - generic [ref=f1e86]:
+              - generic [ref=f1e87]: Mark for review
+              - generic [ref=f1e88]: Save & Next →
+          - generic [ref=f1e89]:
+            - paragraph [ref=f1e90]: Palette
+            - generic [ref=f1e91]:
+              - generic [ref=f1e92]: "1"
+              - generic [ref=f1e93]: "2"
+              - generic [ref=f1e94]: "3"
+              - generic [ref=f1e95]: "4"
+              - generic [ref=f1e96]: "5"
+              - generic [ref=f1e97]: "6"
+              - generic [ref=f1e98]: "7"
+              - generic [ref=f1e99]: "8"
+              - generic [ref=f1e100]: "9"
+              - generic [ref=f1e101]: "10"
+              - generic [ref=f1e102]: "11"
+              - generic [ref=f1e103]: "12"
+              - generic [ref=f1e104]: "13"
+              - generic [ref=f1e105]: "14"
+              - generic [ref=f1e106]: "15"
+              - generic [ref=f1e107]: "16"
+              - generic [ref=f1e108]: "17"
+              - generic [ref=f1e109]: "18"
+              - generic [ref=f1e110]: "19"
+              - generic [ref=f1e111]: "20"
+            - generic [ref=f1e112]:
+              - paragraph [ref=f1e113]: Answered
+              - paragraph [ref=f1e115]: Current
+              - paragraph [ref=f1e117]: Not visited
+    - generic [ref=f1e119]:
+      - generic [ref=f1e120]:
+        - text: Your subjects
+        - heading "Every subject. Every chapter. All in one place." [level=2] [ref=f1e121]
+        - paragraph [ref=f1e122]: Work through the full NEET syllabus, chapter by chapter. Track what you've covered and where you need the most attention.
+      - generic [ref=f1e123]:
+        - link [ref=f1e124] [cursor=pointer]:
+          - /url: /practice
+          - heading "Physics" [level=3] [ref=f1e131]
+          - paragraph [ref=f1e132]: 29 chapters
+          - list [ref=f1e133]:
+            - listitem [ref=f1e134]: Mechanics
+            - listitem [ref=f1e135]: Optics
+            - listitem [ref=f1e136]: Modern Physics
+            - listitem [ref=f1e137]: Electromagnetism
+          - generic [ref=f1e138]: Browse questions
+        - link [ref=f1e141] [cursor=pointer]:
+          - /url: /practice
+          - heading "Chemistry" [level=3] [ref=f1e145]
+          - paragraph [ref=f1e146]: 20 chapters
+          - list [ref=f1e147]:
+            - listitem [ref=f1e148]: Physical
+            - listitem [ref=f1e149]: Organic
+            - listitem [ref=f1e150]: Inorganic
+          - generic [ref=f1e151]: Browse questions
+        - link [ref=f1e154] [cursor=pointer]:
+          - /url: /practice
+          - heading "Botany" [level=3] [ref=f1e159]
+          - paragraph [ref=f1e160]: 22 chapters
+          - list [ref=f1e161]:
+            - listitem [ref=f1e162]: Plant Kingdom
+            - listitem [ref=f1e163]: Genetics
+            - listitem [ref=f1e164]: Ecology
+          - generic [ref=f1e165]: Browse questions
+        - link [ref=f1e168] [cursor=pointer]:
+          - /url: /practice
+          - heading "Zoology" [level=3] [ref=f1e173]
+          - paragraph [ref=f1e174]: 16 chapters
+          - list [ref=f1e175]:
+            - listitem [ref=f1e176]: Human Physiology
+            - listitem [ref=f1e177]: Reproduction
+            - listitem [ref=f1e178]: Evolution
+          - generic [ref=f1e179]: Browse questions
+    - generic [ref=f1e182]:
+      - generic [ref=f1e183]:
+        - text: Practice your way
+        - heading "Four modes. One goal — exam readiness." [level=2] [ref=f1e184]
+        - paragraph [ref=f1e185]: Switch between modes seamlessly. Progress, bookmarks and streaks sync across all of them.
+      - generic [ref=f1e186]:
+        - generic [ref=f1e187]:
+          - heading "CBT Mode" [level=3] [ref=f1e194]
+          - paragraph [ref=f1e195]: Full-screen timed tests that mirror the real NTA exam interface — per-subject timer, mark-for-review, question palette navigation.
+        - generic [ref=f1e196]:
+          - heading "Custom Test Builder" [level=3] [ref=f1e203]
+          - paragraph [ref=f1e204]: Pick subjects, chapters, difficulty and question count. Generate a timed test tailored to exactly what you need to practice.
+        - generic [ref=f1e205]:
+          - heading "Daily Practice Problems" [level=3] [ref=f1e210]
+          - paragraph [ref=f1e211]: Auto-generated daily sets targeting your weak chapters. Spaced repetition built in — questions you miss come back at optimal intervals.
+        - generic [ref=f1e212]:
+          - heading "Smart Flashcards" [level=3] [ref=f1e217]
+          - paragraph [ref=f1e218]: Quick-flip cards with NCERT-exact statements. 8–9 cards per minute review speed. Swipe to master, mark to revisit.
+    - generic [ref=f1e220]:
+      - generic [ref=f1e221]:
+        - text: How it works
+        - heading "From syllabus to score in three steps." [level=2] [ref=f1e222]
+      - generic [ref=f1e223]:
+        - generic [ref=f1e225]:
+          - generic [ref=f1e226]: "1"
+          - heading "Pick a subject or chapter" [level=3] [ref=f1e227]
+          - paragraph [ref=f1e228]: Browse Physics, Chemistry, Botany or Zoology. Filter by chapter, topic, or difficulty. Start wherever you are in your syllabus.
+        - generic [ref=f1e229]:
+          - generic [ref=f1e230]: "2"
+          - heading "Choose your practice mode" [level=3] [ref=f1e231]
+          - paragraph [ref=f1e232]: CBT for exam simulation, Custom Test for targeted drills, DPP for daily spaced repetition, or Flashcards for rapid review.
+        - generic [ref=f1e233]:
+          - generic [ref=f1e234]: "3"
+          - heading "Track and improve" [level=3] [ref=f1e235]
+          - paragraph [ref=f1e236]: See chapter accuracy, weak areas, and projected score after every session. Your revision queue fills automatically with what you missed.
+    - generic [ref=f1e238]:
+      - generic [ref=f1e239]:
+        - generic [ref=f1e240]: 80K+
+        - paragraph [ref=f1e241]: Practice questions
+      - generic [ref=f1e242]:
+        - generic [ref=f1e243]: 100%
+        - paragraph [ref=f1e244]: Syllabus coverage
+      - generic [ref=f1e245]:
+        - generic [ref=f1e246]: 24/7
+        - paragraph [ref=f1e247]: Availability
+      - generic [ref=f1e248]:
+        - generic [ref=f1e249]: Free
+        - paragraph [ref=f1e250]: Forever
+    - generic [ref=f1e252]:
+      - heading "Ready to start practicing?" [level=2] [ref=f1e253]
+      - paragraph [ref=f1e254]: Join thousands of NEET aspirants already using NEETCore. No credit card, no subscription — just quality questions, available whenever you need them.
+      - generic [ref=f1e255]:
+        - link "Start practicing free" [ref=f1e256] [cursor=pointer]:
+          - /url: /signup
+        - link "Explore subjects first" [ref=f1e259] [cursor=pointer]:
+          - /url: /#subjects
+      - paragraph [ref=f1e260]: Completely free. No credit card required. Cancel anytime (there's nothing to cancel).
+  - contentinfo [ref=f1e261]:
+    - generic [ref=f1e262]:
+      - generic [ref=f1e263]:
+        - link "NEETCore home" [ref=f1e264] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f1e268]: NEETCore
+        - paragraph [ref=f1e269]: Free NEET question practice, available 24/7.Quality-driven questions in Physics, Chemistry, Botany and Zoology — completely free, forever.
+        - generic [ref=f1e270]:
+          - link "NEETCore on GitHub" [ref=f1e271] [cursor=pointer]:
+            - /url: https://github.com
+          - link "NEETCore on X" [ref=f1e274] [cursor=pointer]:
+            - /url: https://x.com
+          - link "Contact NEETCore" [ref=f1e277] [cursor=pointer]:
+            - /url: /contact
+      - generic [ref=f1e281]:
+        - heading "Practice" [level=3] [ref=f1e282]
+        - list [ref=f1e283]:
+          - listitem [ref=f1e284]:
+            - link "Physics questions" [ref=f1e285] [cursor=pointer]:
+              - /url: /#subjects
+          - listitem [ref=f1e286]:
+            - link "Chemistry questions" [ref=f1e287] [cursor=pointer]:
+              - /url: /#subjects
+          - listitem [ref=f1e288]:
+            - link "Biology questions" [ref=f1e289] [cursor=pointer]:
+              - /url: /#subjects
+          - listitem [ref=f1e290]:
+            - link "Chapter-wise practice" [ref=f1e291] [cursor=pointer]:
+              - /url: /practice
+          - listitem [ref=f1e292]:
+            - link "Daily practice sets" [ref=f1e293] [cursor=pointer]:
+              - /url: /#practice
+      - generic [ref=f1e294]:
+        - heading "Company" [level=3] [ref=f1e295]
+        - list [ref=f1e296]:
+          - listitem [ref=f1e297]:
+            - link "About NEETCore" [ref=f1e298] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f1e299]:
+            - link "Resources" [ref=f1e300] [cursor=pointer]:
+              - /url: /resources
+          - listitem [ref=f1e301]:
+            - link "Open source" [ref=f1e302] [cursor=pointer]:
+              - /url: https://github.com
+          - listitem [ref=f1e303]:
+            - link "Contact" [ref=f1e304] [cursor=pointer]:
+              - /url: /contact
+      - generic [ref=f1e305]:
+        - heading "Legal" [level=3] [ref=f1e306]
+        - list [ref=f1e307]:
+          - listitem [ref=f1e308]:
+            - link "Privacy policy" [ref=f1e309] [cursor=pointer]:
+              - /url: /privacy
+          - listitem [ref=f1e310]:
+            - link "Terms of service" [ref=f1e311] [cursor=pointer]:
+              - /url: /terms
+    - generic [ref=f1e312]:
+      - paragraph [ref=f1e313]: © 2026 NEETCore. All rights reserved.
+      - paragraph [ref=f1e314]: Made for NEET aspirants, with care.
+  - generic [ref=f1e317]:
+    - button [ref=f1e318]
+    - button [ref=f1e324]
+    - button [ref=f1e328]
+    - button [ref=f1e333]

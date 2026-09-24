@@ -1,0 +1,226 @@
+---
+import QuestionPractice from '../../../../components/QuestionPractice.astro';
+import bodyFluidsRaw from '../../../../data/body-fluids-circulation-essential.json';
+import locomotionRaw from '../../../../data/locomotion-movement-essential.json';
+import { makeCode } from '../../../../lib/codes';
+
+const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+const zooChapters: Array<{ code: number; name: string }> = [
+	{ code: 1, name: 'Animal Kingdom' },
+	{ code: 2, name: 'Structural Organisation in Animals' },
+	{ code: 3, name: 'Body Fluids and Circulation' },
+	{ code: 4, name: 'Breathing and Exchange of Gases' },
+	{ code: 5, name: 'Excretory Products and their Elimination' },
+	{ code: 6, name: 'Locomotion and Movement' },
+	{ code: 7, name: 'Neural Control and Coordination' },
+	{ code: 8, name: 'Chemical Coordination and Integration' },
+	{ code: 9, name: 'Digestion and Absorption' },
+	{ code: 10, name: 'Human Reproduction' },
+	{ code: 11, name: 'Reproductive Health' },
+	{ code: 12, name: 'Evolution' },
+	{ code: 13, name: 'Human Health and Disease' },
+	{ code: 14, name: 'Animal Husbandry' },
+];
+
+const allQuestionSets = [
+	{ id: 2, name: 'NCERT-Essentials', badge: 'Recommended' },
+	{ id: 3, name: 'Standard Question Bank', badge: 'Recommended' },
+	{ id: 5, name: 'NCERT Exemplar' },
+	{ id: 7, name: 'A/R Type Questions' },
+	{ id: 8, name: 'Previous Year Question Bank' },
+	{ id: 10, name: 'Final Revision Pack' },
+];
+
+export function getStaticPaths() {
+	const _slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+	const _chapters = [
+		'Animal Kingdom',
+		'Structural Organisation in Animals',
+		'Body Fluids and Circulation',
+		'Breathing and Exchange of Gases',
+		'Excretory Products and their Elimination',
+		'Locomotion and Movement',
+		'Neural Control and Coordination',
+		'Chemical Coordination and Integration',
+		'Digestion and Absorption',
+		'Human Reproduction',
+		'Reproductive Health',
+		'Evolution',
+		'Human Health and Disease',
+		'Animal Husbandry',
+	];
+	const _sets = [
+		'NCERT-Essentials',
+		'Standard Question Bank',
+		'NCERT Exemplar',
+		'A/R Type Questions',
+		'Previous Year Question Bank',
+		'Final Revision Pack',
+	];
+	const paths: Array<{ params: { chapter: string; set: string } }> = [];
+	for (const ch of _chapters) {
+		for (const st of _sets) {
+			paths.push({ params: { chapter: _slugify(ch), set: _slugify(st) } });
+		}
+	}
+	return paths;
+}
+
+const { chapter, set } = Astro.params;
+
+const currentChapter = zooChapters.find((c) => slugify(c.name) === chapter);
+const currentSet = allQuestionSets.find((s) => slugify(s.name) === set);
+
+if (!currentChapter || !currentSet) {
+	throw new Error(`Not found: ${chapter} / ${set}`);
+}
+
+// Body Fluids and Circulation — topic-wise QA.
+// NCERT-Essentials uses the full bank (original + later-added EX1 batch).
+// Standard Question Bank uses only the original set (numeric sourceQ),
+// excluding the later-added 171 EX1 questions.
+const difficulties = ['Easy', 'Medium', 'Hard'] as const;
+const genericSubtopics: string[] = [];
+const bodyFluidsSubtopics = [
+	'Blood',
+	'Heart, Hearts of Vertebrates and Circulatory Pathways',
+	'Conducting System and Regulation of Cardiac Activity',
+	'CARDIAC CYCLE',
+	'DOUBLE CIRCULATION & PORTAL SYSTEM',
+	'Blood Vessels',
+	'BLOOD PRESSURE & ECG',
+	'Diseases',
+];
+const isBodyFluids = slugify(currentChapter.name) === 'body-fluids-and-circulation';
+const isLocomotion = slugify(currentChapter.name) === 'locomotion-and-movement';
+const setSlug = slugify(currentSet.name);
+const isBodyFluidsSet = isBodyFluids && ['ncert-essentials', 'standard-question-bank'].includes(setSlug);
+const isLocomotionSet = isLocomotion && ['ncert-essentials', 'standard-question-bank'].includes(setSlug);
+const isBankSet = isBodyFluidsSet || isLocomotionSet;
+const isStandardBank = isBodyFluids && setSlug === 'standard-question-bank';
+const isEssentialsBank = (isBodyFluids || isLocomotion) && setSlug === 'ncert-essentials';
+const locomotionSubtopics = [
+	'Types of Movement',
+	'Muscle',
+	'Skeletal System',
+	'Joints',
+	'Disorders of Muscular and Skeletal System',
+];
+const activeSubtopics = isBodyFluids ? bodyFluidsSubtopics : isLocomotion ? locomotionSubtopics : genericSubtopics;
+const bankTopic = isLocomotion ? 'Locomotion and Movement' : 'Body Fluids and Circulation';
+const bankCodePrefix = isLocomotion ? 'L' : 'B';
+
+// Deterministic shuffle (seeded Fisher–Yates via mulberry32) so the
+// Essentials order is mixed yet stable across builds — no hydration drift.
+function hashSeed(str: string): number {
+	let h = 2166136261;
+	for (let i = 0; i < str.length; i++) {
+		h ^= str.charCodeAt(i);
+		h = Math.imul(h, 16777619);
+	}
+	return h >>> 0;
+}
+function seededShuffle<T>(arr: T[], seed: number): T[] {
+	const out = [...arr];
+	let a = seed >>> 0;
+	const rand = () => {
+		a |= 0; a = (a + 0x6d2b79f5) | 0;
+		let t = Math.imul(a ^ (a >>> 15), 1 | a);
+		t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+		return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+	};
+	for (let i = out.length - 1; i > 0; i--) {
+		const j = Math.floor(rand() * (i + 1));
+		[out[i], out[j]] = [out[j], out[i]];
+	}
+	return out;
+}
+let bodyFluidsSource: any[] = isBankSet
+	? isLocomotion
+		? (locomotionRaw as any[])
+		: isStandardBank
+			? (bodyFluidsRaw as any[]).filter((q: any) => typeof q.sourceQ === 'number')
+			: (bodyFluidsRaw as any[])
+	: [];
+// NCERT-Essentials: shuffle within each subtopic, keep topic-wise grouping.
+// Groups follow chapter subtopic order; any unknown subtopic trails at end.
+if (isEssentialsBank && isBankSet) {
+	const orderList = isLocomotion ? locomotionSubtopics : bodyFluidsSubtopics;
+	const grouped = new Map<string, any[]>();
+	for (const q of bodyFluidsSource) {
+		const key = q.subtopic ?? 'Misc';
+		if (!grouped.has(key)) grouped.set(key, []);
+		grouped.get(key)!.push(q);
+	}
+	const ordered: any[] = [];
+	for (const st of orderList) {
+		const g = grouped.get(st);
+		if (g?.length) {
+			ordered.push(...seededShuffle(g, hashSeed(`essentials:${st}`)));
+			grouped.delete(st);
+		}
+	}
+	for (const [, rest] of grouped) ordered.push(...seededShuffle(rest, hashSeed('essentials:misc')));
+	bodyFluidsSource = ordered;
+}
+const mockQuestions = isBankSet
+	? bodyFluidsSource.map((q: any, idx: number) => ({
+		id: idx + 1,
+		code: makeCode(bankCodePrefix, 2000 + idx),
+		ncertVerified: q.ncertVerified ?? true,
+		difficulty: q.difficulty || difficulties[idx % 3],
+		accuracy: q.accuracy || 60,
+		level: q.level || 'Level 2',
+		subtopic: q.subtopic,
+		pyq: q.pyq || false,
+		question: q.question,
+		options: q.options,
+		correct: q.correct,
+		trustedHtml: false,
+		image: q.imagePublic || null,
+		imagePublic: q.imagePublic || null,
+		imagePath: null,
+		solution: q.solution || `Correct is Option ${String.fromCharCode(65 + q.correct)} — ${q.subtopic}`,
+		hint: q.hint || '',
+		ncertRef: q.ncertRef || `NCERT Class XI • ${bankTopic} • ${q.subtopic}`,
+	}))
+	: [];
+
+// Guard: never let questions silently disappear from the bank.
+// Any future edit that drops items, empties options, or breaks the
+// schema fails the build loudly instead of shipping a smaller set.
+if (isBankSet) {
+	const MIN_BANK_QS = isLocomotion ? 303 : isStandardBank ? 145 : 316;
+	const bankLabel = isLocomotion ? 'Locomotion' : 'Body Fluids';
+	if (mockQuestions.length < MIN_BANK_QS) {
+		throw new Error(
+			`${bankLabel} bank shrank: found ${mockQuestions.length}, expected at least ${MIN_BANK_QS}. Refusing to build.`
+		);
+	}
+	const seenIds = new Set<number>();
+	for (const q of mockQuestions) {
+		if (!q.question || !Array.isArray(q.options) || q.options.length !== 4) {
+			throw new Error(`${bankLabel} bank has an incomplete question (id ${q.id}, sourceQ ${q.sourceQ}). Refusing to build.`);
+		}
+		if (q.correct < 0 || q.correct > 3) {
+			throw new Error(`${bankLabel} bank has an out-of-range answer (id ${q.id}). Refusing to build.`);
+		}
+		if (seenIds.has(q.id)) {
+			throw new Error(`${bankLabel} bank has a duplicate id ${q.id}. Refusing to build.`);
+		}
+		seenIds.add(q.id);
+	}
+}
+---
+
+<QuestionPractice
+	chapterName={currentChapter.name}
+	setName={currentSet.name}
+	subjectName="Zoology"
+	subjectSlug="zoo"
+	badgeCode={currentChapter.code}
+	badgeSet={currentSet.id}
+	subtopics={activeSubtopics}
+	questions={mockQuestions}
+/>

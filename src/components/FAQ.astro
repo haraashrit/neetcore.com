@@ -1,0 +1,87 @@
+---
+/**
+ * FAQ — accordion. Grid-rows animation (no JS measuring), plus icon
+ * morphs into an X when open. First item open by default.
+ */
+const faqs = [
+	{
+		q: 'Why just ₹999?',
+		a: 'Because quality prep should never need a loan. Your ₹999 keeps the servers running, the question bank growing and new mocks shipping — with no ads, no sponsors and no data-selling. One small payment, everything unlocked, no paywalls mid-prep.',
+	},
+	{
+		q: 'Do I need to create an account?',
+		a: 'Sign up once and your full-access pass is active immediately. Your account saves progress tracking, streaks, bookmarks and cross-device sync — so your 12-day streak survives a phone change.',
+	},
+	{
+		q: 'Which subjects and chapters are covered?',
+		a: 'The full NEET syllabus: Physics, Chemistry, Botany and Zoology, organised chapter-by-chapter and topic-by-topic. Practice one chapter or generate full-syllabus mocks whenever you are ready.',
+	},
+	{
+		q: 'How is this different from paid platforms?',
+		a: 'The core toolkit matches what paid platforms sell for thousands — CBT mocks, custom tests, DPPs, flashcards and analytics. We just stripped the price down to ₹999: no subscriptions, no locked chapters, no daily caps, no card kept on file.',
+	},
+	{
+		q: 'Can I use it alongside my coaching?',
+		a: 'Absolutely — that is the most common setup. Coaching covers concepts; NEETCore becomes your daily practice layer with DPPs, revision queues and mocks that fit around any schedule.',
+	},
+	{
+		q: 'Which devices can I practice on?',
+		a: 'Any modern browser on mobile, tablet or desktop — nothing to install. Your progress, bookmarks and streaks sync everywhere when you are signed in.',
+	},
+];
+---
+
+<section id="faq" class="border-t border-hairline bg-canvas">
+	<div class="mx-auto w-full max-w-3xl px-6 py-24 sm:py-28">
+		<div class="reveal mx-auto text-center">
+			<span class="text-eyebrow font-semibold uppercase tracking-wider text-primary">Still deciding?</span>
+			<h2 class="mt-3 text-ink" style="font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.1; letter-spacing: -1px; font-weight: 700; text-wrap: balance;">
+				Everything you wanted to ask.
+			</h2>
+		</div>
+
+		<div class="mt-10 space-y-3">
+			{faqs.map((f, i) => (
+				<div
+					class="faq-item reveal rounded-xl border border-hairline bg-surface shadow-card transition-shadow duration-200 hover:shadow-lift"
+					data-open={i === 0 ? 'true' : 'false'}
+				>
+					<button
+						type="button"
+						class="flex w-full items-center justify-between gap-4 px-5 py-4 text-left sm:px-6"
+						aria-expanded={i === 0 ? 'true' : 'false'}
+					>
+						<span class="text-body-md font-semibold text-ink">{f.q}</span>
+						<span
+							class="faq-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white"
+							style="background-color: var(--color-primary)"
+							aria-hidden="true"
+						>
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+								<path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+							</svg>
+						</span>
+					</button>
+					<div class="faq-answer">
+						<div>
+							<p class="px-5 pb-5 text-body-sm leading-relaxed text-ink-muted sm:px-6">{f.a}</p>
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<script>
+	// FAQ accordion — toggle data-open (CSS animates grid-rows + icon)
+	document.querySelectorAll('#faq .faq-item > button').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const item = btn.closest('.faq-item');
+			if (!item) return;
+			const open = item.getAttribute('data-open') === 'true';
+			item.setAttribute('data-open', String(!open));
+			btn.setAttribute('aria-expanded', String(!open));
+		});
+	});
+</script>

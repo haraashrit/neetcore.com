@@ -1,0 +1,196 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import Navbar from '../../../../components/Navbar.astro';
+import Footer from '../../../../components/Footer.astro';
+import QuestionPractice from '../../../../components/QuestionPractice.astro';
+import { getSetData } from '../../../../data/questions';
+import { tex } from '../../../../lib/tex';
+import { makeCode } from '../../../../lib/codes';
+
+export function getStaticPaths() {
+	const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+	const chapters = [
+		{ code: 1, name: 'Some Basic Concepts of Chemistry' },
+		{ code: 2, name: 'Structure of Atom' },
+		{ code: 3, name: 'Periodic Classification' },
+		{ code: 4, name: 'Chemical Bonding and Molecular Structure' },
+		{ code: 5, name: 'Chemical Thermodynamics' },
+		{ code: 6, name: 'Equilibrium' },
+		{ code: 7, name: 'Redox Reactions' },
+		{ code: 8, name: 'Organic Chemistry – Some Basic Principles and Techniques' },
+		{ code: 9, name: 'Hydrocarbons' },
+		{ code: 10, name: 'Solutions' },
+		{ code: 11, name: 'Electrochemistry' },
+		{ code: 12, name: 'Chemical Kinetics' },
+		{ code: 13, name: 'The D-and F-Block Elements' },
+		{ code: 14, name: 'Coordination Compounds' },
+		{ code: 15, name: 'P-Block[Complete]' },
+		{ code: 16, name: 'Haloalkanes and Haloarenes' },
+		{ code: 17, name: 'Alcohols, Phenols and Ethers' },
+		{ code: 18, name: 'Aldehydes, Ketones and Carboxylic Acids' },
+		{ code: 19, name: 'Amines' },
+		{ code: 20, name: 'Biomolecules' },
+	];
+	const questionSets = [
+		{ id: 1, name: 'Concept Builder MCQs' },
+		{ id: 2, name: 'NCERT-Essentials', badge: 'Recommended' },
+		{ id: 3, name: 'Standard Question Bank', badge: 'Recommended' },
+		{ id: 6, name: 'Advanced/Analytical-Type MCQs' },
+		{ id: 7, name: 'A/R Type Questions' },
+		{ id: 8, name: 'Previous Year Question Bank' },
+	];
+	const paths = [];
+	for (const ch of chapters) {
+		for (const st of questionSets) {
+			paths.push({ params: { chapter: slugify(ch.name), set: slugify(st.name) } });
+		}
+	}
+	return paths;
+}
+
+const { chapter, set } = Astro.params;
+const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+const chapters = [
+	{ code: 1, name: 'Some Basic Concepts of Chemistry' },
+	{ code: 2, name: 'Structure of Atom' },
+	{ code: 3, name: 'Periodic Classification' },
+	{ code: 4, name: 'Chemical Bonding and Molecular Structure' },
+	{ code: 5, name: 'Chemical Thermodynamics' },
+	{ code: 6, name: 'Equilibrium' },
+	{ code: 7, name: 'Redox Reactions' },
+	{ code: 8, name: 'Organic Chemistry – Some Basic Principles and Techniques' },
+	{ code: 9, name: 'Hydrocarbons' },
+	{ code: 10, name: 'Solutions' },
+	{ code: 11, name: 'Electrochemistry' },
+	{ code: 12, name: 'Chemical Kinetics' },
+	{ code: 13, name: 'The D-and F-Block Elements' },
+	{ code: 14, name: 'Coordination Compounds' },
+	{ code: 15, name: 'P-Block[Complete]' },
+	{ code: 16, name: 'Haloalkanes and Haloarenes' },
+	{ code: 17, name: 'Alcohols, Phenols and Ethers' },
+	{ code: 18, name: 'Aldehydes, Ketones and Carboxylic Acids' },
+	{ code: 19, name: 'Amines' },
+	{ code: 20, name: 'Biomolecules' },
+];
+
+const questionSets = [
+	{ id: 1, name: 'Concept Builder MCQs' },
+	{ id: 2, name: 'NCERT-Essentials', badge: 'Recommended' },
+	{ id: 3, name: 'Standard Question Bank', badge: 'Recommended' },
+	{ id: 6, name: 'Advanced/Analytical-Type MCQs' },
+	{ id: 7, name: 'A/R Type Questions' },
+	{ id: 8, name: 'Previous Year Question Bank' },
+];
+
+const currentChapter = chapters.find((c) => slugify(c.name) === chapter);
+const currentSet = questionSets.find((s) => slugify(s.name) === set);
+
+if (!currentChapter || !currentSet) {
+	throw new Error(`Not found: ${chapter} / ${set}`);
+}
+
+const setData = currentChapter ? getSetData('C', String(currentChapter.code), String(currentSet.id)) : undefined;
+
+function mulberry32(seed) {
+	let s = seed >>> 0;
+	return () => {
+		s = (s + 0x6d2b79f5) | 0;
+		let t = Math.imul(s ^ (s >>> 15), 1 | s);
+		t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+		return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+	};
+}
+
+function shuffle(arr, seed) {
+	const a = [...arr];
+	const rand = mulberry32(seed);
+	for (let i = a.length - 1; i > 0; i--) {
+		const j = Math.floor(rand() * (i + 1));
+		[a[i], a[j]] = [a[j], a[i]];
+	}
+	return a;
+}
+
+const subtopics = setData
+	? setData.subtopics.map((st, idx) => ({
+			name: st.name,
+			questions: shuffle(st.questions, currentChapter.code * 1000 + currentSet.id * 100 + idx + 7),
+		}))
+	: [];
+
+const LETTER = { A: 0, B: 1, C: 2, D: 3 };
+let _qid = 0;
+let _pcode = 0;
+const subtopicsNames = subtopics.map((st) => st.name);
+const mockQuestions = subtopics.flatMap((st) =>
+	st.questions.map((q) => ({
+		id: ++_qid,
+		code: makeCode('C', _pcode++),
+		ncertVerified: true,
+		difficulty: 'Medium',
+		accuracy: 60,
+		level: 'Level 2',
+		subtopic: st.name,
+		pyq: false,
+		question: tex(q.q),
+		options: q.options.map((o) => tex(o)),
+		trustedHtml: true,
+		correct: LETTER[q.answer],
+		image: null,
+		imagePublic: q.imagePublic || null,
+		imagePath: q.imagePath || null,
+		solution: q.solution ? tex(`**Correct: Option ${q.answer}** — ${q.solution}`) : `Correct is Option ${q.answer} — ${st.name}`,
+		hint: q.hint ? tex(q.hint) : '',
+		ncertRef: '',
+	}))
+);
+---
+
+{
+	setData ? (
+		<QuestionPractice
+			chapterName={currentChapter.name}
+			setName={currentSet.name}
+			subjectName="Chemistry"
+			subjectSlug="che"
+			badgeCode={currentChapter.code}
+			badgeSet={currentSet.id}
+			subtopics={subtopicsNames}
+			questions={mockQuestions}
+		/>
+	) : (
+		<Layout title={`${currentChapter.name} — ${currentSet.name} — NEETCore`} description={`Practice ${currentChapter.name} • ${currentSet.name} — curated NEET Chemistry questions.`}>
+			<Navbar />
+			<main class="mx-auto w-full max-w-6xl px-6 py-12 sm:py-16">
+				<nav class="flex items-center gap-2 text-body-sm text-ink-muted" aria-label="Breadcrumb">
+					<a href="/practice" class="hover:text-primary hover:underline">Practice</a>
+					<span aria-hidden="true">/</span>
+					<a href="/practice/che" class="hover:text-primary hover:underline">Chemistry</a>
+					<span aria-hidden="true">/</span>
+					<a href={`/practice/che/${slugify(currentChapter.name)}`} class="hover:text-primary hover:underline">{currentChapter.name}</a>
+					<span aria-hidden="true">/</span>
+					<span class="font-medium text-ink">{currentSet.name}</span>
+				</nav>
+
+				<a href={`/practice/che/${slugify(currentChapter.name)}`} class="mt-6 inline-flex items-center gap-1 text-body-sm font-medium text-primary hover:underline">← Back to sets</a>
+
+				<h1 class="mt-6 text-ink" style="font-size: clamp(1.8rem, 4vw, 2.75rem); line-height: 1.1; letter-spacing: -1px; font-weight: 700">{currentChapter.name}</h1>
+				<p class="mt-3 max-w-2xl text-body-md text-ink-muted">Chapter {currentChapter.code} • <span class="font-medium text-ink">{currentSet.name}</span> • NEET-focused practice • NCERT-verified questions</p>
+
+				<section class="mt-10">
+					<div class="flex items-baseline justify-between gap-4">
+						<h2 class="text-heading-3 text-ink">Questions</h2>
+						<span class="text-eyebrow font-medium uppercase tracking-wide text-ink-faint">Coming soon</span>
+					</div>
+
+					<div class="mt-6 rounded-xl border border-dashed border-hairline bg-surface p-8 text-center">
+						<p class="text-body-md font-medium text-ink">Question bank for {currentSet.name} is being curated.</p>
+						<p class="mt-2 text-body-sm text-ink-muted">Chapter {currentChapter.code} • {currentChapter.name} — {currentSet.name} will be available shortly. Check back soon or <a href="/contact" class="text-primary hover:underline">contact us</a>.</p>
+					</div>
+				</section>
+			</main>
+			<Footer />
+		</Layout>
+	)
+}

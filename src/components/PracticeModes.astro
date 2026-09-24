@@ -1,0 +1,224 @@
+---
+/**
+ * PracticeModes — bento grid. CBT gets the wide slot with a mini palette
+ * visual; Custom, DPP and Flashcards follow with their own live-feel
+ * mini visuals. The flashcard actually flips (hover, tap, keyboard).
+ */
+---
+
+<section id="practice" class="border-y border-hairline bg-canvas">
+	<div class="mx-auto w-full max-w-6xl px-6 py-24 sm:py-28">
+		<div class="reveal max-w-3xl">
+			<span class="text-eyebrow font-semibold uppercase tracking-wider text-primary">Practice your way</span>
+			<h2 class="mt-3 text-ink" style="font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.1; letter-spacing: -1px; font-weight: 700; text-wrap: balance;">
+				Four modes. One goal — exam readiness.
+			</h2>
+			<p class="mt-4 text-body-md text-ink-muted">
+				Switch between modes seamlessly. Progress, bookmarks and streaks sync across all of them.
+			</p>
+		</div>
+
+		<div class="mt-12 grid gap-5 lg:grid-cols-6">
+			<!-- CBT Mode — wide -->
+			<a
+				href="/practice"
+				class="reveal group relative flex flex-col overflow-hidden rounded-xl border border-hairline bg-surface p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lift sm:p-7 lg:col-span-4"
+			>
+				<span
+					class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+					style="background: linear-gradient(to right, var(--color-accent-sky), transparent)"
+					aria-hidden="true"
+				></span>
+				<div class="flex flex-wrap items-start justify-between gap-4">
+					<div>
+						<span
+							class="rounded-full px-2.5 py-1 text-[11px] font-semibold leading-none"
+							style="background-color: color-mix(in srgb, var(--color-accent-sky) 12%, transparent); color: var(--color-accent-sky)"
+						>
+							Exam-day ready
+						</span>
+						<h3 class="mt-4 text-heading-3 text-ink">CBT Mode</h3>
+						<p class="mt-2 max-w-md text-body-sm text-ink-muted leading-relaxed">
+							Full-screen timed tests that mirror the real NTA exam interface — per-subject timer,
+							mark-for-review, question palette navigation.
+						</p>
+					</div>
+					<!-- Mini palette visual -->
+					<div class="rounded-xl border border-hairline bg-canvas-soft p-4" aria-hidden="true">
+						<div class="flex items-center justify-between gap-6">
+							<span class="text-eyebrow font-semibold uppercase tracking-wider text-ink-faint">Palette</span>
+							<span class="rounded-full bg-surface px-2.5 py-1 text-[11px] font-bold text-primary">02:41:33</span>
+						</div>
+						<div class="mt-3 grid grid-cols-6 gap-1.5">
+							{[...Array(12)].map((_, i) => (
+								<span
+									class="h-5 w-5 rounded"
+									style={
+										i === 7
+											? 'background-color: var(--color-primary)'
+											: i < 7
+												? 'background-color: var(--color-status-green-bg); outline: 1px solid var(--color-status-green-border)'
+												: 'background-color: var(--color-surface); outline: 1px solid var(--color-hairline)'
+									}
+								></span>
+							))}
+						</div>
+					</div>
+				</div>
+				<span class="mt-auto block pt-5">
+					<span class="flex items-center gap-1.5 text-body-sm font-semibold text-primary transition-all duration-200 group-hover:gap-2.5">
+						Try it now
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">
+							<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</span>
+				</span>
+			</a>
+
+			<!-- Custom Test Builder -->
+			<a
+				href="/practice"
+				class="reveal reveal-d1 group relative flex flex-col overflow-hidden rounded-xl border border-hairline bg-surface p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lift sm:p-7 lg:col-span-2"
+			>
+				<span
+					class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+					style="background: linear-gradient(to right, var(--color-accent-orange), transparent)"
+					aria-hidden="true"
+				></span>
+				<span
+					class="w-fit rounded-full px-2.5 py-1 text-[11px] font-semibold leading-none"
+					style="background-color: color-mix(in srgb, var(--color-accent-orange) 12%, transparent); color: var(--color-accent-orange)"
+				>
+					Most flexible
+				</span>
+				<h3 class="mt-4 text-heading-3 text-ink">Custom Tests</h3>
+				<p class="mt-2 text-body-sm text-ink-muted leading-relaxed">
+					Pick subjects, chapters, difficulty and count. Generate a timed test for exactly what you need.
+				</p>
+				<div class="mt-4 flex flex-wrap gap-1.5" aria-hidden="true">
+					{['Physics', 'Thermodynamics', '20 Qs', 'Medium'].map((t) => (
+						<span class="rounded-full border border-hairline bg-canvas-soft px-2.5 py-1 text-[11px] font-medium text-ink-muted">{t}</span>
+					))}
+					<span class="rounded-full px-3 py-1 text-[11px] font-bold text-white" style="background-color: var(--color-primary)">Generate →</span>
+				</div>
+				<span class="mt-auto block pt-5">
+					<span class="flex items-center gap-1.5 text-body-sm font-semibold text-primary transition-all duration-200 group-hover:gap-2.5">
+						Try it now
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">
+							<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</span>
+				</span>
+			</a>
+
+			<!-- DPP -->
+			<a
+				href="/practice"
+				class="reveal group relative flex flex-col overflow-hidden rounded-xl border border-hairline bg-surface p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lift sm:p-7 lg:col-span-3"
+			>
+				<span
+					class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+					style="background: linear-gradient(to right, var(--color-accent-teal), transparent)"
+					aria-hidden="true"
+				></span>
+				<span
+					class="w-fit rounded-full px-2.5 py-1 text-[11px] font-semibold leading-none"
+					style="background-color: color-mix(in srgb, var(--color-accent-teal) 12%, transparent); color: var(--color-accent-teal)"
+				>
+					Daily habit
+				</span>
+				<h3 class="mt-4 text-heading-3 text-ink">Daily Practice Problems</h3>
+				<p class="mt-2 text-body-sm text-ink-muted leading-relaxed">
+					A fresh auto-generated set every day, targeting your weak chapters with spaced repetition built in.
+				</p>
+				<div class="mt-4 flex items-center gap-2" aria-hidden="true">
+					{['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
+						<span
+							class={`flex h-8 w-8 items-center justify-center rounded-full text-[12px] font-bold ${i < 5 ? 'text-white' : 'text-ink-faint'}`}
+							style={i < 5 ? 'background-color: var(--color-primary)' : 'background-color: var(--color-canvas-soft)'}
+						>
+							{d}
+						</span>
+					))}
+					<span class="ml-1 text-[11px] font-semibold text-ink-muted">Today: 20 Qs</span>
+				</div>
+				<span class="mt-auto block pt-5">
+					<span class="flex items-center gap-1.5 text-body-sm font-semibold text-primary transition-all duration-200 group-hover:gap-2.5">
+						Try it now
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">
+							<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</span>
+				</span>
+			</a>
+
+			<!-- Flashcards — flippable demo -->
+			<article
+				class="reveal reveal-d1 group relative flex flex-col overflow-hidden rounded-xl border border-hairline bg-surface p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-lift sm:p-7 lg:col-span-3"
+			>
+				<span
+					class="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+					style="background: linear-gradient(to right, var(--color-accent-purple), transparent)"
+					aria-hidden="true"
+				></span>
+				<span
+					class="w-fit rounded-full px-2.5 py-1 text-[11px] font-semibold leading-none"
+					style="background-color: color-mix(in srgb, var(--color-accent-purple) 16%, transparent); color: var(--color-accent-purple-deep)"
+				>
+					Rapid revision
+				</span>
+				<h3 class="mt-4 text-heading-3 text-ink">Smart Flashcards</h3>
+				<p class="mt-2 text-body-sm text-ink-muted leading-relaxed">
+					NCERT-exact statements at 8–9 cards a minute. Go ahead — flip the card.
+				</p>
+				<div
+					class="flash-scene animate-float mt-4 min-h-36 rounded-xl outline-none focus-visible:ring-2"
+					role="button"
+					tabindex="0"
+					aria-label="Demo flashcard. Activate to flip."
+					style="--tw-ring-color: var(--color-primary)"
+				>
+					<div class="flash-inner min-h-36">
+						<div
+							class="flash-face flex min-h-36 flex-col items-center justify-center gap-1 rounded-xl border border-hairline p-5 text-center"
+							style="background-color: color-mix(in srgb, var(--color-accent-purple) 12%, var(--color-surface))"
+						>
+							<span class="text-eyebrow font-semibold uppercase tracking-wider text-ink-faint">Glycolysis</span>
+							<span class="text-body-md font-bold text-ink">Where does it occur?</span>
+							<span class="mt-1 text-[11px] font-medium text-ink-faint">Tap or hover to flip ↻</span>
+						</div>
+						<div
+							class="flash-back flex min-h-36 flex-col items-center justify-center gap-1 rounded-xl p-5 text-center text-white"
+							style="background: linear-gradient(135deg, var(--color-primary), var(--color-secondary))"
+						>
+							<span class="text-body-md font-bold">In the cytoplasm</span>
+							<span class="text-caption opacity-80">Glucose → 2 Pyruvate + 2 ATP</span>
+						</div>
+					</div>
+				</div>
+				<span class="mt-auto block pt-5">
+					<a href="/practice" class="flex w-fit items-center gap-1.5 text-body-sm font-semibold text-primary transition-all duration-200 hover:gap-2.5">
+						Try flashcards
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+						</svg>
+					</a>
+				</span>
+			</article>
+		</div>
+	</div>
+</section>
+
+<script>
+	// Flashcard flip for tap + keyboard (hover is pure CSS)
+	document.querySelectorAll('#practice .flash-scene').forEach((scene) => {
+		const flip = () => scene.classList.toggle('is-flipped');
+		scene.addEventListener('click', flip);
+		scene.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				flip();
+			}
+		});
+	});
+</script>

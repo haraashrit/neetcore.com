@@ -1,0 +1,74 @@
+---
+/**
+ * Stats — key numbers in a band with hairline dividers.
+ * Numeric stats count up when scrolled into view (progressive enhancement).
+ */
+const stats = [
+	{ value: '80K+', label: 'Practice questions', count: 80, suffix: 'K+' },
+	{ value: '100%', label: 'Syllabus coverage', count: 100, suffix: '%' },
+	{ value: '24/7', label: 'Availability', count: 24, suffix: '/7' },
+	{ value: '₹999', label: 'One-time, full access' },
+];
+---
+
+<section class="border-y border-hairline bg-canvas py-16" data-countup>
+	<div class="mx-auto grid w-full max-w-6xl grid-cols-2 gap-y-10 px-6 sm:grid-cols-4 sm:divide-x sm:divide-hairline">
+		{stats.map((stat, i) => (
+			<div class={`reveal reveal-d${i} flex flex-col items-center text-center`}>
+				<div
+					class="text-primary"
+					style="font-family: 'Grift', sans-serif; font-size: clamp(2.4rem, 4.5vw, 3.25rem); line-height: 1.04; letter-spacing: -1.5px; font-weight: 800;"
+					data-count={stat.count}
+					data-suffix={stat.suffix ?? ''}
+				>
+					{stat.value}
+				</div>
+				<p class="mt-2 text-eyebrow font-medium uppercase tracking-wider text-ink-muted">{stat.label}</p>
+			</div>
+		))}
+	</div>
+</section>
+
+<script>
+	(() => {
+		const section = document.querySelector('[data-countup]');
+		if (!section) return;
+		const nums = [...section.querySelectorAll('[data-count]')];
+		const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const render = (el, n) => {
+			const target = Number(el.getAttribute('data-count'));
+			el.textContent = String(Math.round(target * n)) + (el.getAttribute('data-suffix') || '');
+		};
+		let done = false;
+		const run = () => {
+			if (done) return;
+			done = true;
+			if (reduce) {
+				nums.forEach((el) => render(el, 1));
+				return;
+			}
+			const start = performance.now();
+			const dur = 1200;
+			const tick = (t) => {
+				const p = Math.min((t - start) / dur, 1);
+				const eased = 1 - Math.pow(1 - p, 3);
+				nums.forEach((el) => render(el, eased));
+				if (p < 1) requestAnimationFrame(tick);
+			};
+			requestAnimationFrame(tick);
+		};
+		if ('IntersectionObserver' in window) {
+			const io = new IntersectionObserver((entries) => {
+				entries.forEach((e) => {
+					if (e.isIntersecting) {
+						run();
+						io.disconnect();
+					}
+				});
+			}, { threshold: 0.4 });
+			io.observe(section);
+		} else {
+			run();
+		}
+	})();
+</script>
